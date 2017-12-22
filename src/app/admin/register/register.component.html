@@ -1,0 +1,191 @@
+<!-- <div class="btn-group btn-primary">
+  <button class="btn btn-success btn-sm btn-icon">
+    <clr-icon shape="check"></clr-icon> เปิดใช้งาน
+  </button>
+  <button class="btn btn-danger btn-sm btn-icon">
+    <clr-icon shape="trash"></clr-icon> ยกเลิกใช้งาน
+  </button>
+</div> -->
+
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink>ขึ้นทะเบียนแล้ว
+      <span class="badge badge-success">{{registeredUsers.length | number}}</span>
+    </button>
+    <clr-tab-content *clrIfActive>
+      <div class="row" style="padding-top: 10px;">
+        <div class="col-md-6">
+          <clr-icon shape="search"></clr-icon>
+          <input type="text" name="txtQuery" style="width: 350px;" placeholder="ระบุ ชื่อ/สกุล, เลขบัตรประชาชน">
+        </div>
+        <div class="col-md-6">
+          <div class="btn-group" style="float: right;">
+            <div class="radio btn btn-sm">
+              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1" checked>
+              <label for="btn-demo-radio-1">ทั้งหมด</label>
+            </div>
+            <div class="radio btn btn-sm">
+              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
+              <label for="btn-demo-radio-2">ใช้งานปกติ</label>
+            </div>
+            <div class="radio btn btn-sm">
+              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
+              <label for="btn-demo-radio-3">ยกเลิกการใช้งาน</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <clr-datagrid style="height: 90%;">
+        <clr-dg-column style="width: 150px;">เลขบัตรประชาชน</clr-dg-column>
+        <clr-dg-column style="width: 180px;">MOPHID</clr-dg-column>
+        <clr-dg-column>ชื่อ-สกุล</clr-dg-column>
+        <clr-dg-column>อีเมล์</clr-dg-column>
+        <clr-dg-column style="width: 150px;">วันที่อนุมัติ</clr-dg-column>
+        <clr-dg-column style="width: 100px;">สถานะ</clr-dg-column>
+
+        <clr-dg-placeholder>ไม่พบผู้ป่วยที่รอขึ้นทะเบียน!</clr-dg-placeholder>
+
+        <clr-dg-row *clrDgItems="let user of registeredUsers" [clrDgItem]="user">
+          <clr-dg-action-overflow>
+            <!-- <button class="action-item" (click)="register(user)">
+              <clr-icon class="is-success" shape="check"></clr-icon> ยืนยันการลงทะเบียน
+            </button> -->
+            <button class="action-item" (click)="setActive(user)" *ngIf="user.is_active === 'N' || !user.is_active">
+              <clr-icon class="is-success" shape="check"></clr-icon> เปิดใช้งาน
+            </button>
+            <button class="action-item" (click)="deActive(user)" *ngIf="user.is_active === 'Y'">
+              <clr-icon class="is-danger" shape="trash"></clr-icon> ยกเลิกการใช้งาน
+            </button>
+          </clr-dg-action-overflow>
+          <clr-dg-cell>{{user.cid}}</clr-dg-cell>
+          <clr-dg-cell>{{user.mophid}}</clr-dg-cell>
+          <clr-dg-cell>{{user.first_name}} {{user.last_name}}</clr-dg-cell>
+          <clr-dg-cell>{{user.email}}</clr-dg-cell>
+          <clr-dg-cell>{{user.approved_date | timestampToThaiDate}}</clr-dg-cell>
+          <clr-dg-cell>
+            <clr-icon shape="check" class="is-success" *ngIf="user.is_active === 'Y'"></clr-icon>
+            <clr-icon shape="times" class="is-danger" *ngIf="user.is_active === 'N' || !user.is_active"></clr-icon>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} จาก {{pagination.totalItems}} รายการ
+          <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total"></clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
+
+    </clr-tab-content>
+  </clr-tab>
+
+  <clr-tab>
+    <button clrTabLink>รอขึ้นทะเบียน
+      <span class="badge badge-danger">{{unRegisteredUsers.length | number}}</span>
+    </button>
+    <clr-tab-content *clrIfActive>
+      <div class="row" style="padding-top: 10px;">
+        <div class="col-md-6">
+          <clr-icon shape="search"></clr-icon>
+          <input type="text" name="txtQuery" style="width: 350px;" placeholder="ระบุ ชื่อ/สกุล, เลขบัตรประชาชน">
+        </div>
+      </div>
+      <clr-datagrid style="height: 90%;">
+        <clr-dg-column style="width: 150px;">เลขบัตรประชาชน</clr-dg-column>
+        <clr-dg-column>ชื่อ-สกุล</clr-dg-column>
+        <clr-dg-column>อีเมล์</clr-dg-column>
+        <clr-dg-column style="width: 100px;">วันที่ลงทะเบียน</clr-dg-column>
+        <clr-dg-column style="width: 100px;"></clr-dg-column>
+
+        <clr-dg-placeholder>ไม่พบผู้ป่วยที่รอขึ้นทะเบียน!</clr-dg-placeholder>
+
+        <clr-dg-row *clrDgItems="let user of unRegisteredUsers" [clrDgItem]="user">
+          <clr-dg-cell>{{user.cid}}</clr-dg-cell>
+          <clr-dg-cell>{{user.first_name}} {{user.last_name}}</clr-dg-cell>
+          <clr-dg-cell>{{user.email}}</clr-dg-cell>
+          <clr-dg-cell>{{user.register_date | timestampToThaiDate}}</clr-dg-cell>
+          <clr-dg-cell style="text-align: center;">
+            <button class="btn btn-sm btn-icon btn-primary" title="ลงทะเบียน" (click)="register(user)">
+              <clr-icon shape="note"></clr-icon>
+            </button>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} จาก {{pagination.totalItems}} รายการ
+          <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total"></clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
+    </clr-tab-content>
+  </clr-tab>
+
+</clr-tabs>
+
+<clr-modal [(clrModalOpen)]="openRegister" [clrModalClosable]="false">
+  <h3 class="modal-title">ยืนยันการลงทะเบียนรับบริการ</h3>
+  <div class="modal-body">
+      <span class="spinner spinner-inline" *ngIf="isLoading">
+          กรุณารอซักครู่...
+      </span>
+      <span *ngIf="isLoading">
+          กรุณารอซักครู่...
+      </span>
+    <clr-alert [clrAlertType]="'alert-danger'" [clrAlertClosable]="false" *ngIf="isError">
+      <div class="alert-item">
+        <span class="alert-text">
+          {{errorMessage}}
+        </span>
+      </div>
+    </clr-alert>
+    <clr-alert [clrAlertType]="'alert-success'" [clrAlertClosable]="false" *ngIf="isValidated">
+      <div class="alert-item">
+        <span class="alert-text">
+          ผู้ป่วยรายนี้สามารถขึ้นทะเบียนได้
+        </span>
+      </div>
+    </clr-alert>
+    <form>
+      <section class="form-block">
+        <label>ตรวจสอบการลงทะเบียน</label>
+        <div class="form-group">
+          <label for="formFields_1">เลขบัตรประชาชน</label>
+          <input type="text" name="txtCid" style="width: 100%;" [(ngModel)]="cid" disabled>
+        </div>
+        <div class="form-group">
+          <label for="formFields_1">MOPH ID</label>
+          <input type="text" name="txtMophId" style="width: 100%;" [(ngModel)]="mophid" disabled>
+        </div>
+        <div class="form-group">
+          <label for="formFields_1">ชื่อ (MOPH)</label>
+          <input type="text" name="txtFirstName" style="width: 100%;" [(ngModel)]="firstName" disabled>
+        </div>
+        <div class="form-group">
+          <label for="formFields_1">สกุล (MOPH)</label>
+          <input type="text" name="txtLastName" style="width: 100%;" [(ngModel)]="lastName" disabled>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="checkActive" name="checkActive" [checked]="isActive" [(ngModel)]="isActive">
+          <label for="checkActive">เปิดใช้งาน Application</label>
+        </div>
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" (click)="saveMophId()" [clrLoading]="isSaving" [disabled]="!mophid || isLoading || isSaving">
+      บันทึก
+    </button>
+    <button type="button" class="btn btn-danger btn-sm" (click)="openRegister = false" [disabled]="isLoading || isSaving">
+      ปิดหน้าต่าง
+    </button>
+  </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="openLoading" [clrModalClosable]="false">
+  <h3 class="modal-title">ประมวลผล</h3>
+  <div class="modal-body">
+    <span class="spinner spinner-inline">
+      กรุณารอซักครู่...
+    </span>
+    <span>
+      กรุณารอซักครู่...
+    </span>
+  </div>
+</clr-modal>

@@ -1,0 +1,47 @@
+<clr-main-container>
+  <clr-header class="header-5">
+    <div class="branding">
+      <a routerLink="/admin" class="nav-link">
+        <img src="./assets/img/logo_moph.png" alt="logo" class="logo-moph">
+        <span class="title">ระบบขึ้นทะเบียนผู้ป่วย (PHRs/PHPs)</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger>
+          {{fullname}}
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="javascript://" clrDropdownItem (click)="logout()">ออกจากระบบ</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+
+    </div>
+
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed" [clr-nav-level]="1">
+
+      <!-- <a clrVerticalNavLink routerLink="/admin/dashboard" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="dashboard"></clr-icon>
+        Dashboard
+      </a> -->
+
+      <a clrVerticalNavLink routerLink="/admin/register" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
+        ลงทะเบียนผู้ป่วย
+      </a>
+<!-- 
+      <a clrVerticalNavLink routerLink="/admin/credit" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="certificate"></clr-icon>
+        Credit
+      </a> -->
+    </clr-vertical-nav>
+
+  </div>
+</clr-main-container>

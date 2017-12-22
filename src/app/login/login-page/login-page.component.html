@@ -1,0 +1,17 @@
+<div class="login-wrapper">
+  <form class="login">
+      <label class="title">
+          <h3 class="welcome">ยินดีต้อนรับ</h3>
+          ระบบขึ้นทะเบียนผู้ป่วย (PHRs/PHPs)
+          <h5 class="hint">สำหรับเจ้าหน้าที่ขึ้นทะเบียนผู้ป่วยเพื่อใช้งานแอพลิเคชัน</h5>
+      </label>
+      <div class="login-group">
+          <input class="username" (keyup)="enterLogin($event)" type="text" name="username" [(ngModel)]="username" placeholder="ชื่อผู้ใช้งาน">
+          <input class="password" (keyup)="enterLogin($event)" type="password" name="password" [(ngModel)]="password" placeholder="รหัสผ่าน">
+          <div class="error active" *ngIf="isError">
+              {{errorMessage}}
+          </div>
+          <button (click)="doLogin()" [clrLoading]="logging" type="submit" class="btn btn-primary" [disabled]="!username || !password">เข้าใช้งานระบบ</button>
+      </div>
+  </form>
+</div>

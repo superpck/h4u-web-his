@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+.logo-moph {
+  width : 60px;
+  height: 50px;
+  padding-right: 10px;
+}
+
+.main-container .content-container .content-area {
+  padding: 5px 2px 0 2px;
+}
+
+.datagrid {
+  margin-top: 2px;
+}
