@@ -13,6 +13,20 @@ import { AuthGuardService } from '../services/authguard.service';
 
 import { ToThaiDatePipe } from '../to-thai-date.pipe';
 import { TimestampToThaiDatePipe } from '../timestamp-to-thai-date.pipe';
+import { PatientComponent } from './patient/patient.component';
+import { PhrService } from '../services/phr.service';
+import { AncComponent } from './patient/anc/anc.component';
+import { DrugAllergyComponent } from './patient/drug-allergy/drug-allergy.component';
+import { AllergyDetailComponent } from './patient/drug-allergy/allergy-detail/allergy-detail.component';
+import { DrugOpdComponent } from './patient/drug-opd/drug-opd.component';
+import { EpiComponent } from './patient/epi/epi.component';
+import { LabfuComponent } from './patient/labfu/labfu.component';
+import { NcdScreenComponent } from './patient/ncd-screen/ncd-screen.component';
+import { PersonComponent } from './patient/person/person.component';
+import { NcdDetailComponent } from './patient/ncd-screen/ncd-detail/ncd-detail.component';
+import { LabDetailComponent } from './patient/labfu/lab-detail/lab-detail.component';
+import { EpiDetailComponent } from './patient/epi/epi-detail/epi-detail.component';
+import { DrugDetailComponent } from './patient/drug-opd/drug-detail/drug-detail.component';
 
 @NgModule({
   imports: [
@@ -21,7 +35,27 @@ import { TimestampToThaiDatePipe } from '../timestamp-to-thai-date.pipe';
     AdminRoutingModule,
     ClarityModule
   ],
-  providers: [RegisterService, AuthGuardService],
-  declarations: [LayoutComponent, DashboardComponent, RegisterComponent, CreditComponent, ToThaiDatePipe, TimestampToThaiDatePipe]
+  providers: [RegisterService, AuthGuardService, PhrService],
+  declarations: [
+    LayoutComponent,
+    DashboardComponent,
+    RegisterComponent,
+    CreditComponent,
+    ToThaiDatePipe,
+    TimestampToThaiDatePipe,
+    PatientComponent,
+    AncComponent,
+    DrugAllergyComponent,
+    AllergyDetailComponent,
+    DrugOpdComponent,
+    EpiComponent,
+    LabfuComponent,
+    NcdScreenComponent,
+    PersonComponent,
+    NcdDetailComponent,
+    LabDetailComponent,
+    EpiDetailComponent,
+    DrugDetailComponent
+  ]
 })
 export class AdminModule { }

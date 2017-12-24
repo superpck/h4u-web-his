@@ -1,0 +1,21 @@
+<clr-datagrid>
+  <clr-dg-column [style.width.px]="120">วันที่รับบริการ</clr-dg-column>
+  <clr-dg-column>สถานพยาบาลที่บันทึก</clr-dg-column>
+  <clr-dg-column [style.width.px]="120">ครรภ์ที่</clr-dg-column>
+  <clr-dg-column [style.width.px]="120">อายุครรภ์(สัปดาห์)</clr-dg-column>
+  <clr-dg-column [style.width.px]="150">ผลการตรวจ</clr-dg-column>
+  <clr-dg-column>สถานที่ฝากครรภ์</clr-dg-column>
+
+  <clr-dg-placeholder>ไม่พบรายการ!</clr-dg-placeholder>
+
+  <clr-dg-row *ngFor="let anc of anc">
+    <clr-dg-cell style="text-align: center;">{{anc.DATE_SERV | toThaiDate}}</clr-dg-cell>
+    <clr-dg-cell>{{anc.HOSPNAME}}</clr-dg-cell>
+    <clr-dg-cell style="text-align: center;">{{anc.GRAVIDA}}</clr-dg-cell>
+    <clr-dg-cell style="text-align: center;">{{anc.GA}}</clr-dg-cell>
+    <clr-dg-cell>{{anc.ANCRESULT}}</clr-dg-cell>
+    <clr-dg-cell>{{anc.ANCPLACENAME}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{anc.length}} รายการ</clr-dg-footer>
+</clr-datagrid>

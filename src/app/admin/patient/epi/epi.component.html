@@ -1,0 +1,17 @@
+<clr-datagrid>
+  <clr-dg-column [style.width.px]="120">วันที่รับบริการ</clr-dg-column>
+  <clr-dg-column>สถานพยาบาลที่บันทึก</clr-dg-column>
+  <clr-dg-column>สถานที่รับวัคซีน</clr-dg-column>
+
+  <clr-dg-placeholder>ไม่พบรายการ!</clr-dg-placeholder>
+
+  <clr-dg-row *ngFor="let epi of epi">
+    <app-epi-detail *clrIfExpanded [epi]="epi" ngProjectAs="clr-dg-row-detail"></app-epi-detail>
+
+    <clr-dg-cell style="text-align: center;">{{epi.DATE_SERV | toThaiDate}}</clr-dg-cell>
+    <clr-dg-cell>{{epi.HOSPNAME}}</clr-dg-cell>
+    <clr-dg-cell>{{epi.VACCINEPLACENAME}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{epi.length}} รายการ</clr-dg-footer>
+</clr-datagrid>

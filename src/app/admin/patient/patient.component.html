@@ -1,0 +1,110 @@
+<div class="row" style="padding-top: 10px;">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <label>
+      <clr-icon shape="search"></clr-icon>
+      <input type="text" placeholder="ค้นหาด้วย CID หรือ MOPH-ID" size="30" (keyup)="enterSearch($event)" [(ngModel)]="query">
+    </label>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" style="margin-top: 0px;">
+      <div class="card-block">
+        <div class="card-title">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              ข้อมูลพื้นฐาน
+            </div>
+          </div>
+        </div>
+        <div class="card-text">
+          <form>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="cid" class="label-color">เลขที่บัตรประชาชน</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="cid" placeholder="เลขที่บัตรประชาชน" size="45" readonly [(ngModel)]="person.CID">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="mophId">MOPH-ID</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="mophId" placeholder="MOPH-ID" size="45" readonly [(ngModel)]="person.mophId">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="prefix">คำนำหน้า</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="prefix" placeholder="คำนำหน้า" size="45" readonly value="{{person.PRENAME}}">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="name">ชื่อ-นามสกุล</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="name" placeholder="ชื่อ-นามสกุล" size="45" readonly value="{{person.NAME}} {{person.LNAME}}">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="sex">เพศ</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="sex" placeholder="เพศ" size="45" readonly value="{{person.SEX}}">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <label for="birthDate">วันเกิด</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <input class="form-control" type="text" name="birthDate" placeholder="วันเกิด" size="45" readonly value="{{person.BIRTH | toThaiDate}}">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink>ข้อมูลทั้วไป</button>
+    <clr-tab-content>
+      <app-person [person]="person"></app-person>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>แพ้ยา</button>
+    <clr-tab-content>
+      <app-drug-allergy #drugAllergy [query]="query"></app-drug-allergy>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>ฝากครรภ์</button>
+    <clr-tab-content>
+      <app-anc #anc [query]="query"></app-anc>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>คัดกรอง</button>
+    <clr-tab-content>
+      <app-ncd-screen #ncd [query]="query"></app-ncd-screen>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>ห้องแล็บ</button>
+    <clr-tab-content>
+      <app-labfu #labfu [query]="query"></app-labfu>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>วัคซีน</button>
+    <clr-tab-content>
+      <app-epi #epi [query]="query"></app-epi>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>ประวัติรับยา</button>
+    <clr-tab-content>
+      <app-drug-opd #drugOPD [query]="query"></app-drug-opd>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

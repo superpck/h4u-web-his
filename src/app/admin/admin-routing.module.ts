@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { CreditComponent } from './credit/credit.component';
 import { AuthGuardService } from '../services/authguard.service';
+import { PatientComponent } from './patient/patient.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
       },
       {
         path: 'credit', component: CreditComponent
+      },
+      {
+        path: 'patient', component: PatientComponent
       }
     ]
   }

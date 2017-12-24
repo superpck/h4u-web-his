@@ -1,0 +1,13 @@
+<div class="row flex-items-xs-center">
+  <div class="col-md-11">
+    <clr-datagrid>
+      <clr-dg-column>วัคซีน</clr-dg-column>
+
+      <clr-dg-row *ngFor="let epi of epiDetail">
+        <clr-dg-cell>{{epi.VACCINETYPEEN}} - {{epi.VACCINETYPETH}}</clr-dg-cell>
+      </clr-dg-row>
+
+      <clr-dg-footer>{{epiDetail.length}} รายการ</clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>

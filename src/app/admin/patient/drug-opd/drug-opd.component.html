@@ -1,0 +1,15 @@
+<clr-datagrid>
+  <clr-dg-column [style.width.px]="120">วันที่รับบริการ</clr-dg-column>
+  <clr-dg-column>สถานพยาบาลที่บันทึก</clr-dg-column>
+
+  <clr-dg-placeholder>ไม่พบรายการ!</clr-dg-placeholder>
+
+  <clr-dg-row *ngFor="let drug of drugOPD">
+    <app-drug-detail *clrIfExpanded [drugOPD]="drug" ngProjectAs="clr-dg-row-detail"></app-drug-detail>
+
+    <clr-dg-cell style="text-align: center;">{{drug.DATE_SERV | toThaiDate}}</clr-dg-cell>
+    <clr-dg-cell>{{drug.HOSPNAME}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{drugOPD.length}} รายการ</clr-dg-footer>
+</clr-datagrid>
