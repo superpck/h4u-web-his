@@ -83,6 +83,12 @@ export class PatientComponent implements OnInit {
       SEX: null,
       BIRTH: null
     };
+    this.anc.anc = [];
+    this.drugAllergy.drugAllergy = [];
+    this.ncd.ncdScreen = [];
+    this.labfu.labfu = [];
+    this.epi.epi = [];
+    this.drugOPD.drugOPD = [];
   }
 
 }
