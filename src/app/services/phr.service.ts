@@ -11,7 +11,7 @@ export class PhrService {
 
   getPerson() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/info`)
+      this.authHttp.get(`${this.url}/admin/info`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -23,7 +23,7 @@ export class PhrService {
 
   getDrugAllergy() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/allergy`)
+      this.authHttp.get(`${this.url}/admin/allergy`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -35,7 +35,7 @@ export class PhrService {
 
   getNcdScreen() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/ncdscreen`)
+      this.authHttp.get(`${this.url}/admin/ncdscreen`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -47,7 +47,7 @@ export class PhrService {
 
   getLabFu() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/labfu`)
+      this.authHttp.get(`${this.url}/admin/labfu`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -59,7 +59,7 @@ export class PhrService {
 
   getLabFuDetail(hospcode, pid, seq) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/labfu/info?hospcode=${hospcode}&pid=${pid}&seq=${seq}`)
+      this.authHttp.get(`${this.url}/admin/labfu/info?hospcode=${hospcode}&pid=${pid}&seq=${seq}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -71,7 +71,7 @@ export class PhrService {
 
   getEpi() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/epi`)
+      this.authHttp.get(`${this.url}/admin/epi`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -83,7 +83,7 @@ export class PhrService {
 
   getAnc() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/anc`)
+      this.authHttp.get(`${this.url}/admin/anc`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -95,7 +95,7 @@ export class PhrService {
 
   getLastDrugs() {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/phr/last-drugs`)
+      this.authHttp.get(`${this.url}/admin/last-drugs`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

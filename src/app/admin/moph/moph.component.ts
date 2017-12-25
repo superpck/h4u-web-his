@@ -30,11 +30,8 @@ export class MophComponent implements OnInit {
         const rsPerson: any = await this.mophService.getPerson(this.cid);
         console.log(rsPerson);
         if (rsPerson.ok) {
-          if (!rsMoph.rows.message) {
             this.person = rsPerson.rows;
-            
             this.cPerson = true;
-          }
         }
       }
     }

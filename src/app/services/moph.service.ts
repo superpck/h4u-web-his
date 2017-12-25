@@ -27,7 +27,7 @@ export class MophService {
   }
   getPerson(cid: any) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.apiUrl}/phr/info?cid=${cid}`)
+      this.authHttp.get(`${this.apiUrl}/admin/info?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
