@@ -9,9 +9,9 @@ export class PhrService {
     private authHttp: AuthHttp
   ) { }
 
-  getPerson() {
+  getPerson(cid: any) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/info`)
+      this.authHttp.get(`${this.url}/admin/info?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

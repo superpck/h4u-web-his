@@ -38,7 +38,7 @@ export class PatientComponent implements OnInit {
   async getPerson() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getPerson();
+        const rs: any = await this.phrService.getPerson(this.query);
         if (rs.ok) {
           this.person = rs.info[0];
         } else {
