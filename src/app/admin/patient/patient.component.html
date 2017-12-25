@@ -4,6 +4,7 @@
       <clr-icon shape="search"></clr-icon>
       <input type="text" placeholder="ค้นหาด้วย CID หรือ MOPH-ID" size="30" (keyup)="enterSearch($event)" [(ngModel)]="query">
     </label>
+    <button class="btn btn-sm btn-info-outline" (click)="onSearch()">ค้นหา</button>
   </div>
 </div>
 <div class="row">
@@ -108,3 +109,11 @@
     </clr-tab-content>
   </clr-tab>
 </clr-tabs>
+
+<clr-modal [(clrModalOpen)]="loading" [clrModalClosable]="false" [clrModalStaticBackdrop]="true">
+  <div class="modal-body">
+    <div class="row flex-items-xs-center">
+      <span class="spinner spinner-lg spinner-inverse"></span>
+    </div>
+  </div>
+</clr-modal>

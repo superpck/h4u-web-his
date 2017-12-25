@@ -22,7 +22,7 @@ export class DrugAllergyComponent implements OnInit {
   async getDrugAllergy() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getDrugAllergy();
+        const rs: any = await this.phrService.getDrugAllergy(this.query);
         if (rs.ok) {
           this.drugAllergy = rs.rows;
         } else {

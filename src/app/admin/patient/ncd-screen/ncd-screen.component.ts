@@ -22,7 +22,7 @@ export class NcdScreenComponent implements OnInit {
   async getNcdScreen() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getNcdScreen();
+        const rs: any = await this.phrService.getNcdScreen(this.query);
         if (rs.ok) {
           this.ncdScreen = rs.rows;
         } else {

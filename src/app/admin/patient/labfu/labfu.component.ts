@@ -10,7 +10,7 @@ import { AlertService } from '../../../services/alert.service';
 export class LabfuComponent implements OnInit {
   @Input('query') query;
   labfu = [];
-  loading: boolean = false;
+  loading = false;
   constructor(
     private phrService: PhrService,
     private alertService: AlertService
@@ -22,7 +22,7 @@ export class LabfuComponent implements OnInit {
   async getLabFu() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getLabFu();
+        const rs: any = await this.phrService.getLabFu(this.query);
         if (rs.ok) {
           this.labfu = rs.rows;
         } else {
