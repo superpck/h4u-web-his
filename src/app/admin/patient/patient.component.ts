@@ -48,6 +48,19 @@ export class PatientComponent implements OnInit {
     }
   }
 
+  onSearch() {
+    if (!this.loading) {
+      this.clearForm();
+      this.getPerson();
+      this.anc.getAnc();
+      this.drugAllergy.getDrugAllergy();
+      this.ncd.getNcdScreen();
+      this.labfu.getLabFu();
+      this.epi.getEpi();
+      this.drugOPD.getLastDrug();
+    }
+  }
+
   async getPerson() {
     if (this.query) {
       try {
