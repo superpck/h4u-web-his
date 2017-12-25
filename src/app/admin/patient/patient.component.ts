@@ -15,7 +15,15 @@ export class PatientComponent implements OnInit {
   @ViewChild('epi') private epi: any;
   @ViewChild('drugOPD') private drugOPD: any;
 
-  person = {};
+  person = {
+    CID: null,
+    MOPHID: null,
+    PRENAME: null,
+    NAME: null,
+    LNAME: null,
+    SEX: null,
+    BIRTH: null
+  };
   query;
   checkEnter = true;
   constructor(
