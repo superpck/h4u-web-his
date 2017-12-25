@@ -21,6 +21,7 @@ export class LabfuComponent implements OnInit {
 
   async getLabFu() {
     if (this.query) {
+      this.loading = true;
       try {
         const rs: any = await this.phrService.getLabFu(this.query);
         if (rs.ok) {
@@ -28,8 +29,10 @@ export class LabfuComponent implements OnInit {
         } else {
           this.alertService.error(JSON.stringify(rs.error));
         }
+        this.loading = false;
       } catch (error) {
         this.alertService.serverError();
+        this.loading = false;
       }
     }
   }

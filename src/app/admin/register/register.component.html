@@ -9,7 +9,7 @@
 
 <clr-tabs>
   <clr-tab>
-    <button clrTabLink>ขึ้นทะเบียนแล้ว
+    <button clrTabLink (click)="getRegistered()">ขึ้นทะเบียนแล้ว
       <span class="badge badge-success">{{registeredUsers.length | number}}</span>
     </button>
     <clr-tab-content *clrIfActive>
@@ -78,7 +78,7 @@
   </clr-tab>
 
   <clr-tab>
-    <button clrTabLink>รอขึ้นทะเบียน
+    <button clrTabLink (click)="getUnRegistered()">รอขึ้นทะเบียน
       <span class="badge badge-danger">{{unRegisteredUsers.length | number}}</span>
     </button>
     <clr-tab-content *clrIfActive>
