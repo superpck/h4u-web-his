@@ -22,7 +22,7 @@ export class EpiComponent implements OnInit {
   async getEpi() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getEpi();
+        const rs: any = await this.phrService.getEpi(this.query);
         if (rs.ok) {
           this.epi = rs.rows;
         } else {

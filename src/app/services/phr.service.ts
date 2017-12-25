@@ -9,7 +9,7 @@ export class PhrService {
     private authHttp: AuthHttp
   ) { }
 
-  getPerson(cid: any) {
+  getPerson(cid) {
     return new Promise((resolve, reject) => {
       this.authHttp.get(`${this.url}/admin/info?cid=${cid}`)
         .map(res => res.json())
@@ -21,9 +21,9 @@ export class PhrService {
     });
   }
 
-  getDrugAllergy() {
+  getDrugAllergy(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/allergy`)
+      this.authHttp.get(`${this.url}/admin/allergy?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -33,9 +33,9 @@ export class PhrService {
     });
   }
 
-  getNcdScreen() {
+  getNcdScreen(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/ncdscreen`)
+      this.authHttp.get(`${this.url}/admin/ncdscreen?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -45,9 +45,9 @@ export class PhrService {
     });
   }
 
-  getLabFu() {
+  getLabFu(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/labfu`)
+      this.authHttp.get(`${this.url}/admin/labfu?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -69,9 +69,9 @@ export class PhrService {
     });
   }
 
-  getEpi() {
+  getEpi(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/epi`)
+      this.authHttp.get(`${this.url}/admin/epi?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -81,9 +81,9 @@ export class PhrService {
     });
   }
 
-  getAnc() {
+  getAnc(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/anc`)
+      this.authHttp.get(`${this.url}/admin/anc?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -93,9 +93,9 @@ export class PhrService {
     });
   }
 
-  getLastDrugs() {
+  getLastDrugs(cid) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/last-drugs`)
+      this.authHttp.get(`${this.url}/admin/last-drugs?cid=${cid}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

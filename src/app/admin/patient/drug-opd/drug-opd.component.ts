@@ -22,7 +22,7 @@ export class DrugOpdComponent implements OnInit {
   async getLastDrug() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getLastDrugs();
+        const rs: any = await this.phrService.getLastDrugs(this.query);
         if (rs.ok) {
           this.drugOPD = rs.rows;
         } else {

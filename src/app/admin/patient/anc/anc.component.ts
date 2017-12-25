@@ -22,7 +22,7 @@ export class AncComponent implements OnInit {
   async getAnc() {
     if (this.query) {
       try {
-        const rs: any = await this.phrService.getAnc();
+        const rs: any = await this.phrService.getAnc(this.query);
         if (rs.ok) {
           this.anc = rs.rows;
         } else {

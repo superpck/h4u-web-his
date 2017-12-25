@@ -36,7 +36,6 @@ export class PatientComponent implements OnInit {
   ngOnInit() { }
 
   enterSearch(event) {
-    console.log(event)
     if (event.keyCode === 13 && !this.loading) {
       this.clearForm();
       this.getPerson();
