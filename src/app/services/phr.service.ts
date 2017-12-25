@@ -57,9 +57,9 @@ export class PhrService {
     });
   }
 
-  getLabFuDetail(hospcode, pid, seq) {
+  getLabFuDetail(cid, hospcode, pid, seq) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(`${this.url}/admin/labfu/info?hospcode=${hospcode}&pid=${pid}&seq=${seq}`)
+      this.authHttp.get(`${this.url}/admin/labfu/info?cid=${cid}&hospcode=${hospcode}&pid=${pid}&seq=${seq}`)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

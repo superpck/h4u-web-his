@@ -2,16 +2,16 @@
   <clr-datagrid>
     <clr-dg-column [style.width.px]="120">วันที่ตรวจ</clr-dg-column>
     <clr-dg-column>สถานพยาบาลที่บันทึก</clr-dg-column>
-    <clr-dg-column>สถานพยาบาลที่ตรวจ</clr-dg-column>
+    <!-- <clr-dg-column>สถานพยาบาลที่ตรวจ</clr-dg-column> -->
 
     <clr-dg-placeholder>ไม่พบรายการ!</clr-dg-placeholder>
 
     <clr-dg-row *ngFor="let lab of labfu">
-      <app-lab-detail *clrIfExpanded [labfu]="lab" ngProjectAs="clr-dg-row-detail"></app-lab-detail>
+      <app-lab-detail *clrIfExpanded [labfu]="lab" [query]="query" ngProjectAs="clr-dg-row-detail"></app-lab-detail>
 
       <clr-dg-cell style="text-align: center;">{{lab.DATE_SERV | toThaiDate}}</clr-dg-cell>
       <clr-dg-cell>{{lab.HOSPNAME}}</clr-dg-cell>
-      <clr-dg-cell>{{lab.FUPLACE}}</clr-dg-cell>
+      <!-- <clr-dg-cell>{{lab.FUPLACE}}</clr-dg-cell> -->
     </clr-dg-row>
 
     <clr-dg-footer>{{labfu.length}} รายการ</clr-dg-footer>
