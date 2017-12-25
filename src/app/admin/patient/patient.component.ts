@@ -36,15 +36,10 @@ export class PatientComponent implements OnInit {
   ngOnInit() { }
 
   enterSearch(event) {
+    console.log(event)
     if (event.keyCode === 13 && !this.loading) {
       this.clearForm();
       this.getPerson();
-      this.anc.getAnc();
-      this.drugAllergy.getDrugAllergy();
-      this.ncd.getNcdScreen();
-      this.labfu.getLabFu();
-      this.epi.getEpi();
-      this.drugOPD.getLastDrug();
     }
   }
 
@@ -52,12 +47,6 @@ export class PatientComponent implements OnInit {
     if (!this.loading) {
       this.clearForm();
       this.getPerson();
-      this.anc.getAnc();
-      this.drugAllergy.getDrugAllergy();
-      this.ncd.getNcdScreen();
-      this.labfu.getLabFu();
-      this.epi.getEpi();
-      this.drugOPD.getLastDrug();
     }
   }
 
@@ -68,6 +57,12 @@ export class PatientComponent implements OnInit {
         const rs: any = await this.phrService.getPerson(this.query);
         if (rs.ok) {
           this.person = rs.info[0];
+          this.anc.getAnc();
+          this.drugAllergy.getDrugAllergy();
+          this.ncd.getNcdScreen();
+          this.labfu.getLabFu();
+          this.epi.getEpi();
+          this.drugOPD.getLastDrug();
         } else {
           this.alertService.error(JSON.stringify(rs.error));
         }
