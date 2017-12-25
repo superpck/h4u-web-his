@@ -1,4 +1,4 @@
-<div class="row" style="margin-top:10%;">
+<div class="row" style="margin-top:10%;width:95%;">
   <div class="offset-md-1 col-md-10" style="text-align: center">
     ระบุ CID
     <input type="text" name="cid" [(ngModel)]="cid" (keyup)="enter($event)">
@@ -31,10 +31,15 @@
       <div *ngIf="!cPerson"> <clr-icon shape="times" ></clr-icon>ไม่มีข้อมูลในฐานข้อมูล</div>
   </div>
   <div class="col-md-12" style="text-align: center;margin-top:2%;">
-      <div *ngIf="cPerson && cMoph"><clr-icon shape="check" ></clr-icon>ลงทะเบียนได้</div>
+      <div *ngIf="cPerson && cMoph">
+          <div style="color:green;font-size:1.5rem">
+              <clr-icon shape="check" ></clr-icon> ลงทะเบียนได้
+            </div>
+      </div>
       <div *ngIf="!cPerson || !cMoph"> 
-       <div style="color:red;font-size:1rem">
-         <clr-icon shape="times" ></clr-icon> ห้ามลงทะเบียน</div>
+        <div style="color:red;font-size:1.5rem">
+          <clr-icon shape="times" ></clr-icon> ห้ามลงทะเบียน
+        </div>
       </div>
   </div>
 </div>
