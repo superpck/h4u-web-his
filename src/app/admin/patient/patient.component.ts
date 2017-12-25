@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PhrService } from '../../services/phr.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-patient',
@@ -18,7 +19,8 @@ export class PatientComponent implements OnInit {
   query;
 
   constructor(
-    private phrService: PhrService
+    private phrService: PhrService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() { }
@@ -42,10 +44,10 @@ export class PatientComponent implements OnInit {
         if (rs.ok) {
           this.person = rs.info[0];
         } else {
-          // this.alertService.error(JSON.stringify(rs.error));
+          this.alertService.error(JSON.stringify(rs.error));
         }
       } catch (error) {
-        // this.alertService.serverError();
+        this.alertService.serverError();
       }
     }
   }

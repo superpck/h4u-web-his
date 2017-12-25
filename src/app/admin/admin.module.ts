@@ -29,6 +29,7 @@ import { LabDetailComponent } from './patient/labfu/lab-detail/lab-detail.compon
 import { EpiDetailComponent } from './patient/epi/epi-detail/epi-detail.component';
 import { DrugDetailComponent } from './patient/drug-opd/drug-detail/drug-detail.component';
 import { MophComponent } from './moph/moph.component';
+import { AlertService } from '../services/alert.service';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { MophComponent } from './moph/moph.component';
     AdminRoutingModule,
     ClarityModule
   ],
-  providers: [RegisterService, AuthGuardService, PhrService, MophService],
+  providers: [RegisterService, AuthGuardService, PhrService, MophService, AlertService],
   declarations: [
     LayoutComponent,
     DashboardComponent,

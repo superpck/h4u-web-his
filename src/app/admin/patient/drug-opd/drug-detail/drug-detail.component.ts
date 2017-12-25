@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PhrService } from '../../../../services/phr.service';
+import { AlertService } from '../../../../services/alert.service';
 
 @Component({
   selector: 'app-drug-detail',
@@ -11,7 +12,8 @@ export class DrugDetailComponent implements OnInit {
   drugDetail = [];
 
   constructor(
-    private phrService: PhrService
+    private phrService: PhrService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -24,10 +26,10 @@ export class DrugDetailComponent implements OnInit {
       if (rs.ok) {
         this.drugDetail = rs.rows;
       } else {
-        // this.alertService.error(JSON.stringify(rs.error));
+        this.alertService.error(JSON.stringify(rs.error));
       }
     } catch (error) {
-      // this.alertService.serverError();
+      this.alertService.serverError();
     }
   }
 
