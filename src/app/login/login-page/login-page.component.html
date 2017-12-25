@@ -11,7 +11,7 @@
           <div class="error active" *ngIf="isError">
               {{errorMessage}}
           </div>
-          <button (click)="doLogin()" [clrLoading]="logging" type="submit" class="btn btn-primary" [disabled]="!username || !password">เข้าใช้งานระบบ</button>
+          <button (click)="doLogin()" [clrLoading]="logging" type="button" class="btn btn-primary" [disabled]="!username || !password">เข้าใช้งานระบบ</button>
       </div>
   </form>
 </div>
