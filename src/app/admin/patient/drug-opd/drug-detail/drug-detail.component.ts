@@ -17,20 +17,6 @@ export class DrugDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getDrugOpdDetail();
-  }
-
-  async getDrugOpdDetail() {
-    try {
-      const rs: any = await this.phrService.getLabFuDetail(this.drugOPD.HOSPCODE, this.drugOPD.PID, this.drugOPD.SEQ);
-      if (rs.ok) {
-        this.drugDetail = rs.rows;
-      } else {
-        this.alertService.error(JSON.stringify(rs.error));
-      }
-    } catch (error) {
-      this.alertService.serverError();
-    }
   }
 
 }
