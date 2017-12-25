@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { CreditComponent } from './credit/credit.component';
 import { AuthGuardService } from '../services/authguard.service';
 import { PatientComponent } from './patient/patient.component';
+import { MophComponent } from './moph/moph.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
       },
       {
         path: 'patient', component: PatientComponent
+      },
+      {
+        path: 'moph', component: MophComponent
       }
     ]
   }

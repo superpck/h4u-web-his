@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { CreditComponent } from './credit/credit.component';
 import { RegisterService } from '../services/register.service';
 import { AuthGuardService } from '../services/authguard.service';
+import { MophService } from '../services/moph.service';
 
 import { ToThaiDatePipe } from '../to-thai-date.pipe';
 import { TimestampToThaiDatePipe } from '../timestamp-to-thai-date.pipe';
@@ -27,6 +28,8 @@ import { NcdDetailComponent } from './patient/ncd-screen/ncd-detail/ncd-detail.c
 import { LabDetailComponent } from './patient/labfu/lab-detail/lab-detail.component';
 import { EpiDetailComponent } from './patient/epi/epi-detail/epi-detail.component';
 import { DrugDetailComponent } from './patient/drug-opd/drug-detail/drug-detail.component';
+import { MophComponent } from './moph/moph.component';
+
 
 @NgModule({
   imports: [
@@ -35,7 +38,7 @@ import { DrugDetailComponent } from './patient/drug-opd/drug-detail/drug-detail.
     AdminRoutingModule,
     ClarityModule
   ],
-  providers: [RegisterService, AuthGuardService, PhrService],
+  providers: [RegisterService, AuthGuardService, PhrService, MophService],
   declarations: [
     LayoutComponent,
     DashboardComponent,
@@ -55,7 +58,8 @@ import { DrugDetailComponent } from './patient/drug-opd/drug-detail/drug-detail.
     NcdDetailComponent,
     LabDetailComponent,
     EpiDetailComponent,
-    DrugDetailComponent
+    DrugDetailComponent,
+    MophComponent
   ]
 })
 export class AdminModule { }
