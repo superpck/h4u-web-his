@@ -17,7 +17,7 @@ export class PatientComponent implements OnInit {
 
   person = {};
   query;
-
+  check = true;
   constructor(
     private phrService: PhrService,
     private alertService: AlertService
@@ -26,7 +26,8 @@ export class PatientComponent implements OnInit {
   ngOnInit() { }
 
   enterSearch(event) {
-    if (event.keyCode === 13) {
+    
+    if (event.keyCode === 13 && this.check === true) {
       this.getPerson();
       this.anc.getAnc();
       this.drugAllergy.getDrugAllergy();
@@ -35,6 +36,9 @@ export class PatientComponent implements OnInit {
       this.epi.getEpi();
       this.drugOPD.getLastDrug();
     }
+    if (event.keyCode === 13) {
+      this.check = true;
+      }
   }
 
   async getPerson() {
@@ -45,6 +49,7 @@ export class PatientComponent implements OnInit {
           this.person = rs.info[0];
         } else {
           this.alertService.error(JSON.stringify(rs.error));
+          this.check = false;
         }
       } catch (error) {
         this.alertService.serverError();
