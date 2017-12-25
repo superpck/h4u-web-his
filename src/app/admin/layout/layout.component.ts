@@ -10,6 +10,8 @@ import { JwtHelper } from 'angular2-jwt';
 export class LayoutComponent implements OnInit {
   jwtHelper: JwtHelper = new JwtHelper();
   fullname: any;
+  collapsed: boolean = false;
+  
   constructor(private router: Router) { 
     let token = sessionStorage.getItem('token');
     let decoded: any = this.jwtHelper.decodeToken(token);

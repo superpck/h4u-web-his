@@ -10,7 +10,7 @@ import { AlertService } from '../../../services/alert.service';
 export class LabfuComponent implements OnInit {
   @Input('query') query;
   labfu = [];
-
+  loading: boolean = false;
   constructor(
     private phrService: PhrService,
     private alertService: AlertService
