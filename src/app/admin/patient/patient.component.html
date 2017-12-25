@@ -108,3 +108,11 @@
     </clr-tab-content>
   </clr-tab>
 </clr-tabs>
+
+<clr-modal [(clrModalOpen)]="loading" [clrModalClosable]="false" [clrModalStaticBackdrop]="true">
+  <div class="modal-body">
+    <div class="row flex-items-xs-center">
+      <span class="spinner spinner-lg spinner-inverse"></span>
+    </div>
+  </div>
+</clr-modal>

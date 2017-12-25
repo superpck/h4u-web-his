@@ -10,10 +10,12 @@ export class AlertService {
   error(text: any = 'เกิดข้อผิดพลาด') {
 
     const option: SweetAlertOptions = {
-      title: 'เกิดข้อผิดพลาด',
+      // title: 'เกิดข้อผิดพลาด',
       text: text,
       type: 'error',
-      confirmButtonText: 'ตกลง'
+      // confirmButtonText: 'ตกลง'
+      showConfirmButton: false,
+      timer: 1500
     };
     swal(option);
 
@@ -33,7 +35,7 @@ export class AlertService {
       function () { },
       // handling the promise rejection
       function (dismiss) {
-        if (dismiss === 'timer') {}
+        if (dismiss === 'timer') { }
       }
       )
 
@@ -42,10 +44,12 @@ export class AlertService {
   serverError() {
 
     const option: SweetAlertOptions = {
-      title: 'เกิดข้อผิดพลาด',
+      // title: 'เกิดข้อผิดพลาด',
       text: 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์',
       type: 'error',
-      confirmButtonText: 'ตกลง'
+      // confirmButtonText: 'ตกลง',
+      showConfirmButton: false,
+      timer: 1500
     };
     swal(option);
 

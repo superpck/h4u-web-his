@@ -24,8 +24,10 @@ export class PatientComponent implements OnInit {
     SEX: null,
     BIRTH: null
   };
+
   query;
-  checkEnter = true;
+  loading = false;
+
   constructor(
     private phrService: PhrService,
     private alertService: AlertService
@@ -34,7 +36,8 @@ export class PatientComponent implements OnInit {
   ngOnInit() { }
 
   enterSearch(event) {
-    if (event.keyCode === 13 && this.checkEnter === true) {
+    if (event.keyCode === 13 && !this.loading) {
+      this.clearForm();
       this.getPerson();
       this.anc.getAnc();
       this.drugAllergy.getDrugAllergy();
@@ -43,25 +46,36 @@ export class PatientComponent implements OnInit {
       this.epi.getEpi();
       this.drugOPD.getLastDrug();
     }
-    if (event.keyCode === 13) {
-      this.checkEnter = true;
-      }
   }
 
   async getPerson() {
     if (this.query) {
       try {
+        this.loading = true;
         const rs: any = await this.phrService.getPerson(this.query);
         if (rs.ok) {
           this.person = rs.info[0];
         } else {
           this.alertService.error(JSON.stringify(rs.error));
-          this.checkEnter = false;
         }
+        this.loading = false;
       } catch (error) {
         this.alertService.serverError();
+        this.loading = false;
       }
     }
+  }
+
+  clearForm() {
+    this.person = {
+      CID: null,
+      MOPHID: null,
+      PRENAME: null,
+      NAME: null,
+      LNAME: null,
+      SEX: null,
+      BIRTH: null
+    };
   }
 
 }
