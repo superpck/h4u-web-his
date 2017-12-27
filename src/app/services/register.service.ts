@@ -32,13 +32,11 @@ export class RegisterService {
   }
 
   async searchMophId(cid: any) {
-    let url = ``;
     let rs: any = await this.authHttp.post(`${this.apiUrl}/admin/search-mophid`, { cid: cid }).toPromise();
     return rs.json();
   }
 
   async saveMophId(cid: any, mophid: any, isActive: any) {
-    let url = ``;
     let rs: any = await this.authHttp.post(`${this.apiUrl}/admin/save-mophid`, {
       cid: cid,
       mophid: mophid,

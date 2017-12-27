@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
 
   async register(user: any) {
     this.clearForm();
-    this.searchMophId(user.cid);
+    await this.searchMophId(user.cid);
     this.openRegister = true;
   }
 
