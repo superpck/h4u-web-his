@@ -9,13 +9,13 @@ export class LoginService {
     @Inject('API_URL') private apiUrl: string,
     private http: Http
   ) { }
-  
+
   async doLogin(username: any, password: any) {
-    let data = {
+    const data = {
       username: username,
       password: password
     }
-    let rs: any = await this.http.post(`${this.apiUrl}/users/smh-login`, data).toPromise();
+    const rs: any = await this.http.post(`${this.apiUrl}/login`, data).toPromise();
     return rs.json();
   }
 

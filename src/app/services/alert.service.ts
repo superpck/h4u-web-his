@@ -14,8 +14,8 @@ export class AlertService {
       text: text,
       type: 'error',
       // confirmButtonText: 'ตกลง'
-      showConfirmButton: false,
-      timer: 1500
+      showConfirmButton: true,
+      // timer: 1500
     };
     swal(option);
 
@@ -49,7 +49,7 @@ export class AlertService {
       type: 'error',
       // confirmButtonText: 'ตกลง',
       showConfirmButton: false,
-      timer: 1500
+      // timer: 1500
     };
     swal(option);
 

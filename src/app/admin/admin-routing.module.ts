@@ -1,12 +1,10 @@
+import { ConsentValidateComponent } from './consent-validate/consent-validate.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
-import { CreditComponent } from './credit/credit.component';
+import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from '../services/authguard.service';
-import { PatientComponent } from './patient/patient.component';
-import { MophComponent } from './moph/moph.component';
 
 const routes: Routes = [
   {
@@ -15,22 +13,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: '', redirectTo: 'register', pathMatch: 'full'
+        path: '', redirectTo: 'home', pathMatch: 'full'
       },
       {
         path: 'dashboard', component: DashboardComponent
       },
       {
-        path: 'register', component: RegisterComponent
-      },
+        path: 'home', component: HomeComponent
+      }
       {
-        path: 'credit', component: CreditComponent
-      },
-      {
-        path: 'patient', component: PatientComponent
-      },
-      {
-        path: 'moph', component: MophComponent
+        path: 'consent/validate', component: ConsentValidateComponent
       }
     ]
   }
