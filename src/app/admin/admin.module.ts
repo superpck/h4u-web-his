@@ -1,3 +1,4 @@
+import { ConsentService } from './../services/consent.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClarityModule } from 'clarity-angular';
@@ -17,6 +18,7 @@ import { StatusPipe } from '../pipe/status.pipe';
 import { DetailRequestComponent } from './datagrid/detail-request/detail-request.component';
 import { ServiceService } from '../services/service.service';
 import { ConsentValidateComponent } from './consent-validate/consent-validate.component';
+import { ToThaiDateTimePipe } from '../to-thai-date-time.pipe';
 
 @NgModule({
   imports: [
@@ -25,13 +27,14 @@ import { ConsentValidateComponent } from './consent-validate/consent-validate.co
     AdminRoutingModule,
     ClarityModule
   ],
-  providers: [HomeService, AuthGuardService, AlertService, ServiceService],
+  providers: [HomeService, AuthGuardService, AlertService, ServiceService, ConsentService],
   declarations: [
     LayoutComponent,
     DashboardComponent,
     HomeComponent,
     ToThaiDatePipe,
     TimestampToThaiDatePipe,
+    ToThaiDateTimePipe,
     StatusPipe,
     DetailRequestComponent,
     ConsentValidateComponent

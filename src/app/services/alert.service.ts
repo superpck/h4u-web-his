@@ -26,7 +26,7 @@ export class AlertService {
     const option: SweetAlertOptions = {
       title: title,
       text: text,
-      timer: 1000,
+      timer: 3000,
       type: 'success',
       confirmButtonText: 'ตกลง'
     };

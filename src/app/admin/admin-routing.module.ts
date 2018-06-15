@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'home', component: HomeComponent
-      }
+      },
       {
         path: 'consent/validate', component: ConsentValidateComponent
       }
