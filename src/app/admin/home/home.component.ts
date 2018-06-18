@@ -1,3 +1,4 @@
+import { ConsentService } from './../../services/consent.service';
 import { AlertService } from './../../services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
+    private consentService: ConsentService,
     private alertService: AlertService
   ) {
     const token = sessionStorage.getItem('token');
@@ -62,8 +64,10 @@ export class HomeComponent implements OnInit {
       const rs: any = await this.homeService.getRequestService(status, this.hcode);
       if (rs.ok) {
         this.waiting = rs.rows;
-        console.log(this.waiting);
-
+        for (const v of this.waiting) {
+          const rsC = await this.consentService.getConsent(v.cid);
+          v.consent = rsC.ok;
+        }
       }
       this.openLoading = false;
     } catch (error) {

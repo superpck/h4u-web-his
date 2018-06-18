@@ -14,7 +14,7 @@ export class HomeService {
 
 
   async getRequestService(status = 'all', hcode) {
-    const rs: any = await this.http.post(`http://localhost:3002/v1/service/hospital/request`,
+    const rs: any = await this.http.post(`http://203.157.102.103:443/api/phr/v1/service/hospital/request`,
       {
         hcode: '10957',
         status: status
@@ -23,7 +23,7 @@ export class HomeService {
   }
 
   async getRequestVaccine(status = 'all', hcode) {
-    const rs: any = await this.http.post(`http://localhost:3002/v1/vaccines/hospital/request`,
+    const rs: any = await this.http.post(`http://203.157.102.103:443/api/phr/v1/vaccines/hospital/request`,
       {
         hcode: '10957',
         status: status
@@ -44,31 +44,31 @@ export class HomeService {
   }
 
   async sendService(data) {
-    const url = `http://localhost:3002/v1/service/hospital`;
+    const url = `http://203.157.102.103:443/api/phr/v1/service/hospital`;
     const rs: any = await this.http.post(url, { service: data }).toPromise();
     return rs.json();
   }
 
   async noData(requestId) {
-    const url = `http://localhost:3002/v1/service/hospital/nodata`;
+    const url = `http://203.157.102.103:443/api/phr/v1/service/hospital/nodata`;
     const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }
 
   async sendVaccine(data) {
-    const url = `http://localhost:3002/v1/vaccines/hospital`;
+    const url = `http://203.157.102.103:443/api/phr/v1/vaccines/hospital`;
     const rs: any = await this.http.post(url, { service: data }).toPromise();
     return rs.json();
   }
 
   async disApprove(requestId) {
-    const url = `http://localhost:3002/v1/service/hospital/disapprove`;
+    const url = `http://203.157.102.103:443/api/phr/v1/service/hospital/disapprove`;
     const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }
 
   async disApproveVaccine(requestId) {
-    const url = `http://localhost:3002/v1/vaccines/hospital/disapprove`;
+    const url = `http://203.157.102.103:443/api/phr/v1/vaccines/hospital/disapprove`;
     const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }

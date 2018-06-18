@@ -33,9 +33,9 @@
               <label for="btn-demo-radio-4">ไม่อนุมัติ</label>
             </div>
             <div class="radio btn btn-sm">
-                <input type="radio" (change)="changeStatus('nodata')" name="btn-group-demo-radios" id="btn-demo-radio-5">
-                <label for="btn-demo-radio-5">ไม่มีข้อมูล</label>
-              </div>
+              <input type="radio" (change)="changeStatus('nodata')" name="btn-group-demo-radios" id="btn-demo-radio-5">
+              <label for="btn-demo-radio-5">ไม่มีข้อมูล</label>
+            </div>
           </div>
         </div>
       </div>
@@ -46,6 +46,7 @@
         <clr-dg-column>ชื่อ-สกุล</clr-dg-column>
         <clr-dg-column>วันที่รับริการ</clr-dg-column>
         <clr-dg-column>สถานะ</clr-dg-column>
+        <clr-dg-column [style.width.px]="10">ยินยอมเปิดเผยข้อมูล</clr-dg-column>
         <clr-dg-column></clr-dg-column>
 
         <clr-dg-placeholder>ไม่พบผู้ขอข้อมูล!</clr-dg-placeholder>
@@ -59,8 +60,11 @@
           <clr-dg-cell>{{w.date_serve | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
           <clr-dg-cell>
+            <clr-icon title="ลงทะเบียน consent form แล้ว" *ngIf="w.consent" shape="check"></clr-icon>
+          </clr-dg-cell>
+          <clr-dg-cell>
             <div class="btn-group">
-              <button [disabled]="w.status!=='wait'" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
+              <button [disabled]="w.status!=='wait' || !w.consent" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
               <button [disabled]="w.status!=='wait'" (click)="disApprove(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
             </div>
           </clr-dg-cell>
@@ -126,6 +130,7 @@
         <clr-dg-column>วันที่รับริการ</clr-dg-column>
         <clr-dg-column>สถานะ</clr-dg-column>
         <clr-dg-column></clr-dg-column>
+        <clr-dg-column></clr-dg-column>
 
         <clr-dg-placeholder>ไม่พบผู้ขอข้อมูล!</clr-dg-placeholder>
 
@@ -138,8 +143,11 @@
           <clr-dg-cell>{{w.date_serve | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
           <clr-dg-cell>
+            <clr-icon title="ลงทะเบียน consent form แล้ว" *ngIf="w.consent" shape="list" class="has-badge"></clr-icon>
+          </clr-dg-cell>
+          <clr-dg-cell>
             <div class="btn-group">
-              <button [disabled]="w.status!=='wait'" (click)="approveVaccine(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
+              <button [disabled]="w.status!=='wait' || !w.consent" (click)="approveVaccine(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
               <button [disabled]="w.status!=='wait'" (click)="disApproveVaccine(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
             </div>
           </clr-dg-cell>
