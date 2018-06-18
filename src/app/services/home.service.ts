@@ -13,8 +13,17 @@ export class HomeService {
   ) { }
 
 
-  async getDetail(status = 'all') {
+  async getRequestService(status = 'all', hcode) {
     const rs: any = await this.http.post(`http://localhost:3002/v1/service/hospital/request`,
+      {
+        hcode: '10957',
+        status: status
+      }).toPromise();
+    return rs.json();
+  }
+
+  async getRequestVaccine(status = 'all', hcode) {
+    const rs: any = await this.http.post(`http://localhost:3002/v1/vaccines/hospital/request`,
       {
         hcode: '10957',
         status: status
@@ -28,14 +37,38 @@ export class HomeService {
     return rs.json();
   }
 
+  async getVaccine(hcode, hn) {
+    const url = `${this.apiUrl}/vaccines/view/${hcode}/${hn}`;
+    const rs: any = await this.http.get(url).toPromise();
+    return rs.json();
+  }
+
   async sendService(data) {
-    const url = `http://localhost:3002/v1/service/hospital/check`;
+    const url = `http://localhost:3002/v1/service/hospital`;
+    const rs: any = await this.http.post(url, { service: data }).toPromise();
+    return rs.json();
+  }
+
+  async noData(requestId) {
+    const url = `http://localhost:3002/v1/service/hospital/nodata`;
+    const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
+    return rs.json();
+  }
+
+  async sendVaccine(data) {
+    const url = `http://localhost:3002/v1/vaccines/hospital`;
     const rs: any = await this.http.post(url, { service: data }).toPromise();
     return rs.json();
   }
 
   async disApprove(requestId) {
-    const url = `http://localhost:3002/v1/service/hospital/check`;
+    const url = `http://localhost:3002/v1/service/hospital/disapprove`;
+    const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
+    return rs.json();
+  }
+
+  async disApproveVaccine(requestId) {
+    const url = `http://localhost:3002/v1/vaccines/hospital/disapprove`;
     const rs: any = await this.http.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }

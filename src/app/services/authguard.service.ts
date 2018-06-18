@@ -12,9 +12,9 @@ export class AuthGuardService {
       console.log(this.jwtHelper.isTokenExpired(sessionStorage.getItem('token')));
       console.log(this.jwtHelper.decodeToken(sessionStorage.getItem('token')));
       // console.log()
-      if(this.jwtHelper.isTokenExpired(sessionStorage.getItem('token'))) {
+      if (this.jwtHelper.isTokenExpired(sessionStorage.getItem('token'))) {
         this.router.navigate(['/login']);
-        return false;        
+        return false;
       } else {
         return true;
       }

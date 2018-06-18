@@ -10,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DetailRequestComponent implements OnInit {
 
   // detail = [{ hn: '40701', name: { title_name: 'test', first_name: 'test', last_name: 'test' }, date_serve: '123', cid: '123' }];
-  detail: any = [];
+  detail: any = {};
   @Input() details: any;
   hcode: any = '';
   hn: any = '';
@@ -19,8 +19,12 @@ export class DetailRequestComponent implements OnInit {
   firstName: any = '';
   lastName: any = '';
   requestId: any = '';
-  registerId: any = '';
+  uid: any = '';
   cid: any = '';
+
+  _titleName: any;
+  _firstName: any;
+  _lastName: any;
 
   openLoading = false;
   constructor(
@@ -29,9 +33,9 @@ export class DetailRequestComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    this.getDetail();
-    this.getService();
+  async ngOnInit() {
+    await this.getDetail();
+    await this.getService();
   }
 
   getDetail() {
@@ -39,7 +43,7 @@ export class DetailRequestComponent implements OnInit {
     this.hn = this.details.hn;
     this.hcode = this.details.hcode;
     this.requestId = this.details.request_id;
-    this.registerId = this.details.register_id;
+    this.uid = this.details.uid;
     this.titleName = this.details.name.title_name;
     this.firstName = this.details.name.first_name;
     this.lastName = this.details.name.last_name;
@@ -49,21 +53,23 @@ export class DetailRequestComponent implements OnInit {
   async getService() {
     this.openLoading = true;
     try {
-      console.log(this.hn, this.dateServe, this.requestId, this.registerId);
+      console.log(this.hn, this.dateServe, this.requestId, this.uid);
 
-      const rs: any = await this.serviceService.getService(this.hn, this.dateServe, this.requestId, this.registerId);
+      const rs: any = await this.serviceService.getService(this.hn, this.dateServe, this.requestId, this.uid);
+      console.log(rs);
+
       if (rs.ok) {
         this.detail = rs.rows;
-        console.log(this.detail);
-        console.log('title_name', this.detail.profile.name.title_name);
-
+        this._titleName = rs.rows.profile.name.title_name;
+        this._firstName = rs.rows.profile.name.first_name;
+        this._lastName = rs.rows.profile.name.last_name;
       } else {
-        this.alertService.error(rs.error);
+        // this.alertService.error(rs.error);
       }
       this.openLoading = false;
     } catch (error) {
-      this.openLoading = false;;
-      this.alertService.error(error);
+      this.openLoading = false;
+      // this.alertService.error(error);
     }
 
   }

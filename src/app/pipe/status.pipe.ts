@@ -12,6 +12,8 @@ export class StatusPipe implements PipeTransform {
       return 'อนุมัติ';
     } else if (value === 'disapprove') {
       return 'ไม่อนุมัติ';
+    } else if (value === 'nodata') {
+      return 'ไม่มีข้อมูล';
     } else {
       return '-';
     }

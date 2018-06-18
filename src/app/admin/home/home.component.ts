@@ -1,6 +1,7 @@
 import { AlertService } from './../../services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { HomeService } from '../../services/home.service';
   styles: []
 })
 export class HomeComponent implements OnInit {
+  jwtHelper: JwtHelper = new JwtHelper();
   // registeredUsers: any = [];
   // unRegisteredUsers: any = [];
   // total = 0;
@@ -15,6 +17,8 @@ export class HomeComponent implements OnInit {
   openLoading = false;
   waiting = [];
   selected = [];
+  hcode: any;
+  vaccines = [];
   // openRegister = false;
 
   // cid: any;
@@ -32,22 +36,48 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private alertService: AlertService
-  ) { }
+  ) {
+    const token = sessionStorage.getItem('token');
+    const decoded: any = this.jwtHelper.decodeToken(token);
+    this.hcode = decoded.hospcode;
+  }
 
   ngOnInit() {
-    this.getDetailWait('wait');
+    this.getDetail('wait');
+    this.getVaccine('wait');
   }
-  changeStatus(status) {
-    this.getDetailWait(status);
 
+  changeStatus(status) {
+    this.getDetail(status);
   }
-  async getDetailWait(status) {
+
+  changeStatusVaccine(status) {
+    this.getVaccine(status);
+  }
+
+
+  async getDetail(status) {
     try {
       this.openLoading = true;
-      const rs: any = await this.homeService.getDetail(status);
-      // console.log(rs);
+      const rs: any = await this.homeService.getRequestService(status, this.hcode);
       if (rs.ok) {
         this.waiting = rs.rows;
+        console.log(this.waiting);
+
+      }
+      this.openLoading = false;
+    } catch (error) {
+      this.openLoading = false;
+    }
+  }
+
+  async getVaccine(status) {
+    try {
+      this.openLoading = true;
+      const rs: any = await this.homeService.getRequestVaccine(status, this.hcode);
+      // console.log(rs);
+      if (rs.ok) {
+        this.vaccines = rs.rows;
         console.log(this.waiting);
 
       }
@@ -61,13 +91,15 @@ export class HomeComponent implements OnInit {
     this.alertService.confirm('คุณต้องการที่จะอนุมัติ ใช่หรือไม่!')
       .then(async (result) => {
         if (result.value) {
-          const rs: any = await this.homeService.getService(w.hn, w.date_serve, w.request_id, w.register_id);
+          const rs: any = await this.homeService.getService(w.hn, w.date_serve, w.request_id, w.uid);
+          console.log(rs);
           if (rs.ok) {
             const data = rs.rows;
             const rsS: any = await this.homeService.sendService(data);
-            console.log(rsS);
-
+          } else {
+            await this.homeService.noData(w.request_id);
           }
+          this.getDetail('wait');
         } else {
           console.log('exit');
         }
@@ -78,7 +110,11 @@ export class HomeComponent implements OnInit {
     this.alertService.confirm('คุณต้องการที่จะไม่อนุมัติ ใช่หรือไม่')
       .then(async (result) => {
         if (result.value) {
+          console.log(w.request_id);
+
           const rs: any = await this.homeService.disApprove(w.request_id);
+          console.log(rs);
+          this.getDetail('wait');
         } else {
           console.log('exit');
         }
@@ -90,10 +126,45 @@ export class HomeComponent implements OnInit {
       .then(async (result) => {
         if (result.value) {
           for (const w of this.selected) {
-            const rs: any = await this.homeService.getService(w.hn, w.date_serve, w.request_id, w.register_id);
+            const rs: any = await this.homeService.getService(w.hn, w.date_serve, w.request_id, w.uid);
             if (rs.ok) {
               const rsS: any = await this.homeService.sendService(rs.rows);
               console.log(rsS);
+            } else {
+              await this.homeService.noData(w.request_id);
+            }
+          }
+          this.getDetail('wait');
+        } else {
+          console.log('exit');
+        }
+      });
+  }
+
+  disApproveMulti() {
+    this.alertService.confirm(`คุณต้องการที่จะไม่อนุมัติ ${this.selected.length} รายการ ใช่หรือไม่`)
+      .then(async (result) => {
+        if (result.value) {
+          for (const w of this.selected) {
+            const rs: any = await this.homeService.disApprove(w.request_id);
+          }
+          this.getDetail('wait');
+        } else {
+          console.log('exit');
+        }
+      });
+  }
+  // #################### vaccine
+  approveVaccine(w) {
+    this.alertService.confirm('คุณต้องการที่จะอนุมัติ ใช่หรือไม่!')
+      .then(async (result) => {
+        if (result.value) {
+          const rs: any = await this.homeService.getVaccine(w.hn, w.request_id);
+          if (rs.ok) {
+            const data = rs.rows;
+            const rsS: any = await this.homeService.sendVaccine(data);
+            if (rsS.ok) {
+              this.getVaccine('wait');
             }
           }
         } else {
@@ -102,11 +173,43 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  disApproveMulit(w) {
+  disApproveVaccine(w) {
+    this.alertService.confirm('คุณต้องการที่จะไม่อนุมัติ ใช่หรือไม่')
+      .then(async (result) => {
+        if (result.value) {
+          const rs: any = await this.homeService.disApproveVaccine(w.request_id);
+          this.getVaccine('wait');
+        } else {
+          console.log('exit');
+        }
+      });
+  }
+
+  approveMultiVaccine() {
+    this.alertService.confirm(`คุณต้องการที่จะอนุมัติ ${this.selected.length} รายการ ใช่หรือไม่!`)
+      .then(async (result) => {
+        if (result.value) {
+          for (const w of this.selected) {
+            const rs: any = await this.homeService.getVaccine(w.hn, w.request_id);
+            if (rs.ok) {
+              const rsS: any = await this.homeService.sendVaccine(rs.rows);
+            }
+          }
+          this.getVaccine('wait');
+        } else {
+          console.log('exit');
+        }
+      });
+  }
+
+  disApproveMultiVaccine() {
     this.alertService.confirm(`คุณต้องการที่จะไม่อนุมัติ ${this.selected.length} รายการ ใช่หรือไม่`)
       .then(async (result) => {
         if (result.value) {
-          const rs: any = await this.homeService.disApprove(w.request_id);
+          for (const w of this.selected) {
+            const rs: any = await this.homeService.disApproveVaccine(w.request_id);
+          }
+          this.getVaccine('wait');
         } else {
           console.log('exit');
         }

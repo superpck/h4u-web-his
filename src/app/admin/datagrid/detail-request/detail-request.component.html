@@ -1,55 +1,41 @@
-<div class="row">
-  <div class="col-md-2">ข้อมูลจากระบบ HIS</div>
-  <div class="col-md-2">{{detail.hn}} 
+<div>
+  <div class="row" *ngIf="detail">
+    <div class="col-md-2">ข้อมูลจากระบบ HIS</div>
+    <div class="col-md-2">{{detail.hn}}
       <clr-icon *ngIf="detail.hn !== hn" style="color: yellow" shape="warning-standard"></clr-icon>
-      <clr-icon *ngIf="detail.hn == hn" style="color: green" shape="check"></clr-icon></div>
-  <div class="col-md-2">{{detail.cid}}
-      <clr-icon *ngIf="detail.cid !== cid" style="color: yellow" shape="warning-standard"></clr-icon>
-      <clr-icon *ngIf="detail.cid == cid" style="color: green" shape="check"></clr-icon></div>
-  <div class="col-md-2"> {{detail.profile.name.title_name}}{{detail.profile.name.first_name}} {{detail.profile.name.last_name}}
-      <clr-icon *ngIf="detail.profile.name.title_name !== titleName || detail.profile.name.first_name !== firstName || detail.profile.name.last_name !== lastName" style="color: yellow" shape="warning-standard"></clr-icon>
-      <clr-icon *ngIf="detail.profile.name.title_name === titleName && detail.profile.name.first_name === firstName && detail.profile.name.last_name === lastName" style="color: green" shape="check"></clr-icon></div>
-</div>
-<!-- <clr-datagrid>
-<clr-dg-row>
-    <clr-dg-cell>ข้อมูลจากระบบ HIS</clr-dg-cell>
-    <clr-dg-cell>{{detail.hn}} 
-        <clr-icon *ngIf="detail.hn !== hn" style="color: yellow" shape="warning-standard"></clr-icon>
-        <clr-icon *ngIf="detail.hn == hn" style="color: green" shape="check"></clr-icon>
-    </clr-dg-cell>
-    <clr-dg-cell>{{detail.cid}}
+      <clr-icon *ngIf="detail.hn == hn" style="color: green" shape="check"></clr-icon>
+    </div>
+    <div class="col-md-2">{{detail.cid}}
       <clr-icon *ngIf="detail.cid !== cid" style="color: yellow" shape="warning-standard"></clr-icon>
       <clr-icon *ngIf="detail.cid == cid" style="color: green" shape="check"></clr-icon>
-    </clr-dg-cell>
-    <clr-dg-cell>
-      {{detail.profile.name.title_name}}{{detail.profile.name.first_name}} {{detail.profile.name.last_name}}
-      <clr-icon *ngIf="detail.profile.name.title_name !== titleName || detail.profile.name.first_name !== firstName || detail.profile.name.last_name !== lastName" style="color: yellow" shape="warning-standard"></clr-icon>
-      <clr-icon *ngIf="detail.profile.name.title_name === titleName && detail.profile.name.first_name === firstName && detail.profile.name.last_name === lastName" style="color: green" shape="check"></clr-icon>
-    </clr-dg-cell>
-    <clr-dg-cell></clr-dg-cell>
-    <clr-dg-cell>
-    </clr-dg-cell>
-  </clr-dg-row>
-  </clr-datagrid> -->
-<clr-datagrid>
-  <clr-dg-placeholder>ไม่พบผู้ขอข้อมูล!</clr-dg-placeholder>
-  <clr-dg-row *ngFor="let s of detail.services">
-    <clr-dg-cell>{{s.date_serve | toThaiDate}}</clr-dg-cell>
-    <clr-dg-cell>Seq : {{s.seq}}</clr-dg-cell>
-    <clr-dg-cell>{{s.clinic}}</clr-dg-cell>
-    <clr-dg-cell>
-    </clr-dg-cell>
-  </clr-dg-row>
-</clr-datagrid>
-
-<clr-modal [(clrModalOpen)]="openLoading" [clrModalClosable]="false">
-    <h3 class="modal-title">ประมวลผล</h3>
-    <div class="modal-body">
-      <span class="spinner spinner-inline">
-        กรุณารอซักครู่...
-      </span>
-      <span>
-        กรุณารอซักครู่...
-      </span>
     </div>
-  </clr-modal>
+    <div class="col-md-2"> 
+      {{_titleName}}{{_firstName}} {{_lastName}}
+      <clr-icon *ngIf="_titleName !== titleName || _firstName !== firstName || _lastName !== lastName"
+        style="color: yellow" shape="warning-standard"></clr-icon>
+      <clr-icon *ngIf="_titleName === titleName && _firstName === firstName && _lastName === lastName"
+        style="color: green" shape="check"></clr-icon>
+    </div>
+  </div>
+  <clr-datagrid>
+    <clr-dg-placeholder>ไม่มีข้อมูลการรับบริการ!</clr-dg-placeholder>
+    <clr-dg-row *ngFor="let s of detail.services">
+      <clr-dg-cell>{{s.date_serve | toThaiDate}}</clr-dg-cell>
+      <clr-dg-cell>Seq : {{s.seq}}</clr-dg-cell>
+      <clr-dg-cell>{{s.clinic}}</clr-dg-cell>
+      <clr-dg-cell>
+      </clr-dg-cell>
+    </clr-dg-row>
+  </clr-datagrid>
+</div>
+<clr-modal [(clrModalOpen)]="openLoading" [clrModalClosable]="false">
+  <h3 class="modal-title">ประมวลผล</h3>
+  <div class="modal-body">
+    <span class="spinner spinner-inline">
+      กรุณารอซักครู่...
+    </span>
+    <span>
+      กรุณารอซักครู่...
+    </span>
+  </div>
+</clr-modal>
