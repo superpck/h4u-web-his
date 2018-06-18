@@ -82,7 +82,11 @@ export class HomeComponent implements OnInit {
       // console.log(rs);
       if (rs.ok) {
         this.vaccines = rs.rows;
-        console.log(this.waiting);
+        for (const v of this.vaccines) {
+          const rsC = await this.consentService.getConsent(v.cid);
+          v.consent = rsC.ok;
+        }
+        // console.log(this.waiting);
 
       }
       this.openLoading = false;
