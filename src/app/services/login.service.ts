@@ -14,7 +14,7 @@ export class LoginService {
     const data = {
       username: username,
       password: password
-    }
+    };
     const rs: any = await this.http.post(`${this.apiUrl}/login`, data).toPromise();
     return rs.json();
   }

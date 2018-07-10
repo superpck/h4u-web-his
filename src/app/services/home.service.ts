@@ -2,21 +2,28 @@ import { Injectable, Inject } from '@angular/core';
 // import { toPromise } from 'rxjs/operator/toPromise';
 import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class HomeService {
-
+  public jwtHelper: JwtHelper = new JwtHelper();
+  hcode: any;
   constructor(
     @Inject('API_URL') private apiUrl: string,
     private authHttp: AuthHttp,
     private http: Http
-  ) { }
+  ) {
+    const token = sessionStorage.getItem('token');
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    // const accessRight = decodedToken.accessRight;
+    this.hcode = decodedToken.hospcode;
+  }
 
 
   async getRequestService(status = 'all', hcode) {
     const rs: any = await this.http.post(`http://203.157.102.103:443/api/phr/v1/service/hospital/request`,
       {
-        hcode: '10957',
+        hcode: this.hcode,
         status: status
       }).toPromise();
     return rs.json();
@@ -25,7 +32,7 @@ export class HomeService {
   async getRequestVaccine(status = 'all', hcode) {
     const rs: any = await this.http.post(`http://203.157.102.103:443/api/phr/v1/vaccines/hospital/request`,
       {
-        hcode: '10957',
+        hcode: this.hcode,
         status: status
       }).toPromise();
     return rs.json();
