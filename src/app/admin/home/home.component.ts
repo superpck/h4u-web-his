@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDetail('wait');
+    this.getDetail('waiting');
     // this.getVaccine('wait');
   }
 
@@ -65,8 +65,8 @@ export class HomeComponent implements OnInit {
       if (rs.ok) {
         this.waiting = rs.rows;
         // for (const v of this.waiting) {
-          // const rsC = await this.consentService.getConsent(v.cid);
-          // v.consent = rsC.ok;
+        // const rsC = await this.consentService.getConsent(v.cid);
+        // v.consent = rsC.ok;
         // }
       }
       this.openLoading = false;
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
           } else {
             await this.homeService.noData(w.request_id);
           }
-          this.getDetail('wait');
+          this.getDetail('waiting');
         } else {
           console.log('exit');
         }
@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit {
 
           const rs: any = await this.homeService.disApprove(w.request_id);
           console.log(rs);
-          this.getDetail('wait');
+          this.getDetail('waiting');
         } else {
           console.log('exit');
         }
@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit {
               await this.homeService.noData(w.request_id);
             }
           }
-          this.getDetail('wait');
+          this.getDetail('waiting');
         } else {
           console.log('exit');
         }
@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit {
           for (const w of this.selected) {
             const rs: any = await this.homeService.disApprove(w.request_id);
           }
-          this.getDetail('wait');
+          this.getDetail('waiting');
         } else {
           console.log('exit');
         }

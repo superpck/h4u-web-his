@@ -1,6 +1,6 @@
 <clr-tabs>
   <clr-tab>
-    <button clrTabLink (click)="getDetail('wait')">ข้อมูลสุขภาพ
+    <button clrTabLink (click)="getDetail('waiting')">ข้อมูลสุขภาพ
       <span class="badge badge-success">{{waiting.length | number}}</span>
     </button>
     <clr-tab-content *clrIfActive>
@@ -64,8 +64,8 @@
           </clr-dg-cell>
           <clr-dg-cell>
             <div class="btn-group">
-              <button [disabled]="w.status!=='wait' || !w.consent" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
-              <button [disabled]="w.status!=='wait'" (click)="disApprove(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
+              <button [disabled]="w.status!=='waiting' || !w.consent" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
+              <button [disabled]="w.status!=='waiting'" (click)="disApprove(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
             </div>
           </clr-dg-cell>
           <!-- <clr-dg-cell>
