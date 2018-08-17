@@ -56,7 +56,7 @@
           <clr-dg-cell>{{w.date_request | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.hn}}</clr-dg-cell>
           <clr-dg-cell>{{w.cid}}</clr-dg-cell>
-          <clr-dg-cell>{{w.name.title_name}}{{w.name.first_name}} {{w.name.last_name}}</clr-dg-cell>
+          <clr-dg-cell>{{w.first_name}} {{w.last_name}}</clr-dg-cell>
           <clr-dg-cell>{{w.date_serve | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
           <clr-dg-cell>
@@ -82,88 +82,7 @@
     </clr-tab-content>
   </clr-tab>
 
-  <clr-tab>
-    <button clrTabLink (click)="getVaccine('wait')">ข้อมูลวัคซีน
-      <span class="badge badge-danger">{{vaccines.length | number}}</span>
-    </button>
-    <clr-tab-content *clrIfActive>
-      <div class="row" style="padding-top: 10px;">
-        <div class="col-md-6">
-
-          <div class="btn-group">
-            <button *ngIf="selected.length > 0" (click)="approveMultiVaccine()" class="btn btn-sm btn-success-outline">อนุมัติ {{selected.length}} รายการ</button>
-            <button *ngIf="selected.length > 0" (click)="disApproveMultiVaccine()" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ {{selected.length}} รายการ</button>
-          </div>
-          <!-- <clr-icon shape="search"></clr-icon>
-            <input type="text" name="txtQuery" style="width: 350px;" placeholder="ระบุ ชื่อ/สกุล, เลขบัตรประชาชน"> -->
-        </div>
-        <div class="col-md-6">
-          <div class="btn-group" style="float: right;">
-            <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatusVaccine('all')" name="btn-group-demo-radios" id="btn-demo-radio-1">
-              <label for="btn-demo-radio-1">ทั้งหมด</label>
-            </div>
-            <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatusVaccine('wait')" name="btn-group-demo-radios" id="btn-demo-radio-2" checked>
-              <label for="btn-demo-radio-2">รออนุมัติ</label>
-            </div>
-            <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatusVaccine('approve')" name="btn-group-demo-radios" id="btn-demo-radio-3">
-              <label for="btn-demo-radio-3">อนุมัติ</label>
-            </div>
-            <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatusVaccine('disapprove')" name="btn-group-demo-radios" id="btn-demo-radio-4">
-              <label for="btn-demo-radio-4">ไม่อนุมัติ</label>
-            </div>
-            <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatusVaccine('nodata')" name="btn-group-demo-radios" id="btn-demo-radio-5">
-              <label for="btn-demo-radio-5">ไม่มีข้อมูล</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <clr-datagrid style="height: 90%;" [(clrDgSelected)]="selected">
-        <clr-dg-column>วันที่ขอข้อมูล</clr-dg-column>
-        <clr-dg-column>HN</clr-dg-column>
-        <clr-dg-column>เลขบัตรประชาชน</clr-dg-column>
-        <clr-dg-column>ชื่อ-สกุล</clr-dg-column>
-        <clr-dg-column>วันที่รับริการ</clr-dg-column>
-        <clr-dg-column>สถานะ</clr-dg-column>
-        <clr-dg-column></clr-dg-column>
-        <clr-dg-column></clr-dg-column>
-
-        <clr-dg-placeholder>ไม่พบผู้ขอข้อมูล!</clr-dg-placeholder>
-
-        <clr-dg-row *clrDgItems="let w of vaccines" [clrDgItem]="w">
-          <app-detail-request [details]="w" *clrIfExpanded ngProjectAs="clr-dg-row-detail"></app-detail-request>
-          <clr-dg-cell>{{w.date_request | toThaiDate}}</clr-dg-cell>
-          <clr-dg-cell>{{w.hn}}</clr-dg-cell>
-          <clr-dg-cell>{{w.cid}}</clr-dg-cell>
-          <clr-dg-cell>{{w.name.title_name}}{{w.name.first_name}} {{w.name.last_name}}</clr-dg-cell>
-          <clr-dg-cell>{{w.date_serve | toThaiDate}}</clr-dg-cell>
-          <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
-          <clr-dg-cell>
-            <clr-icon title="ลงทะเบียน consent form แล้ว" *ngIf="w.consent" shape="list" class="has-badge"></clr-icon>
-          </clr-dg-cell>
-          <clr-dg-cell>
-            <div class="btn-group">
-              <button [disabled]="w.status!=='wait' || !w.consent" (click)="approveVaccine(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
-              <button [disabled]="w.status!=='wait'" (click)="disApproveVaccine(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
-            </div>
-          </clr-dg-cell>
-          <!-- <clr-dg-cell>
-              <clr-icon shape="check" class="is-success" *ngIf="user.is_active === 'Y'"></clr-icon>
-              <clr-icon shape="times" class="is-danger" *ngIf="user.is_active === 'N' || !user.is_active"></clr-icon>
-            </clr-dg-cell> -->
-        </clr-dg-row>
-
-        <clr-dg-footer>
-          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} จาก {{pagination.totalItems}} รายการ
-          <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total"></clr-dg-pagination>
-        </clr-dg-footer>
-      </clr-datagrid>
-    </clr-tab-content>
-  </clr-tab>
+  
 </clr-tabs>
 
 <!-- <clr-modal [(clrModalOpen)]="openRegister" [clrModalClosable]="false">

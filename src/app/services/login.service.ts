@@ -15,7 +15,8 @@ export class LoginService {
       username: username,
       password: password
     };
-    const rs: any = await this.http.post(`${this.apiUrl}/login`, data).toPromise();
+    console.log('Login');    
+    const rs: any = await this.http.post(`http://203.157.103.123/h4u/api/login/smh-login`, data).toPromise();
     return rs.json();
   }
 
