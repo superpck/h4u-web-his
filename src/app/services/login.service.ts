@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 export class LoginService {
 
   constructor(
+    @Inject('API_H4U_URL') private h4uUrl: string,
     @Inject('API_URL') private apiUrl: string,
     private http: Http
   ) { }
@@ -15,8 +16,8 @@ export class LoginService {
       username: username,
       password: password
     };
-    console.log('Login');    
-    const rs: any = await this.http.post(`http://203.157.103.123/h4u/api/login/smh-login`, data).toPromise();
+    console.log('Login');
+    const rs: any = await this.http.post(`${this.h4uUrl}/login/smh-login`, data).toPromise();
     return rs.json();
   }
 

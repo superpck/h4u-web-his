@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Inject } from '@angular/http';
 @Injectable()
 export class ConsentService {
 
   constructor(
-    private http: Http
+    private http: Http,
+    @Inject('API_CONSENTS_URL') private h4uConsentsUrl: string,
   ) { }
 
 
   async getLogs(hcode) {
-    const url = `http://203.157.102.103:443/api/phr/v1/consent/log?hcode=${hcode}`;
+    const url = `${this.h4uConsentsUrl}/consent/log?hcode=${hcode}`;
     const rs: any = await this.http.get(url).toPromise();
     return rs.json();
   }
 
   async search(cid, hcode, searchBy) {
-    const url = `http://203.157.102.103:443/api/phr/v1/consent`;
+    const url = `${this.h4uConsentsUrl}/consent`;
     const rs: any = await this.http.post(url,
       {
         cid: cid,
@@ -26,7 +27,7 @@ export class ConsentService {
   }
 
   async getConsent(cid) {
-    const url = `http://203.157.102.103:443/api/phr/v1/consent/${cid}`;
+    const url = `${this.h4uConsentsUrl}/consent/${cid}`;
     const rs: any = await this.http.get(url).toPromise();
     return rs.json();
   }

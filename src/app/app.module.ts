@@ -37,6 +37,8 @@ import { AuthModule } from './auth/auth.module';
   providers: [
     JwtHelper,
     { provide: 'API_URL', useValue: environment.apiUrl },
+    { provide: 'API_CONSENTS_URL', useValue: environment.apiConsents },
+    { provide: 'API_H4U_URL', useValue: environment.apiH4u },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
