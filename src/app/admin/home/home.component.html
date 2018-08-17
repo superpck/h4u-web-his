@@ -21,15 +21,15 @@
               <label for="btn-demo-radio-1">ทั้งหมด</label>
             </div>
             <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatus('wait')" name="btn-group-demo-radios" id="btn-demo-radio-2" checked>
+              <input type="radio" (change)="changeStatus('waiting')" name="btn-group-demo-radios" id="btn-demo-radio-2" checked>
               <label for="btn-demo-radio-2">รออนุมัติ</label>
             </div>
             <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatus('approve')" name="btn-group-demo-radios" id="btn-demo-radio-3">
+              <input type="radio" (change)="changeStatus('approved')" name="btn-group-demo-radios" id="btn-demo-radio-3">
               <label for="btn-demo-radio-3">อนุมัติ</label>
             </div>
             <div class="radio btn btn-sm">
-              <input type="radio" (change)="changeStatus('disapprove')" name="btn-group-demo-radios" id="btn-demo-radio-4">
+              <input type="radio" (change)="changeStatus('cancel')" name="btn-group-demo-radios" id="btn-demo-radio-4">
               <label for="btn-demo-radio-4">ไม่อนุมัติ</label>
             </div>
             <div class="radio btn btn-sm">
@@ -82,7 +82,7 @@
     </clr-tab-content>
   </clr-tab>
 
-  
+
 </clr-tabs>
 
 <!-- <clr-modal [(clrModalOpen)]="openRegister" [clrModalClosable]="false">
