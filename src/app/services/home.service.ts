@@ -22,7 +22,7 @@ export class HomeService {
 
 
   async getRequestService(status = 'all', hcode) {
-    const rs: any = await this.authHttp.get(`${this.h4uUrl}/requests`).toPromise();
+    const rs: any = await this.authHttp.get(`${this.h4uUrl}/requests?status=${status}`).toPromise();
     return rs.json();
   }
 
