@@ -54,7 +54,7 @@ export class HomeService {
   }
 
   async noData(requestId) {
-    const url = `${this.h4uUrl}/services/nodata`;
+    const url = `${this.h4uUrl}/requests/nodata`;
     const rs: any = await this.authHttp.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }
@@ -66,7 +66,7 @@ export class HomeService {
   // }
 
   async disApprove(requestId) {
-    const url = `${this.h4uUrl}/services/cancel`;
+    const url = `${this.h4uUrl}/requests/cancel`;
     const rs: any = await this.authHttp.post(url, { request_id: requestId }).toPromise();
     return rs.json();
   }
