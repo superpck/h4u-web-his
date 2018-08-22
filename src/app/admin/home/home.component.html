@@ -8,8 +8,10 @@
         <div class="col-md-6">
 
           <div class="btn-group">
-            <button *ngIf="selected.length > 0" (click)="approveMulti()" class="btn btn-sm btn-success-outline">อนุมัติ {{selected.length}} รายการ</button>
-            <button *ngIf="selected.length > 0" (click)="disApproveMulti()" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ {{selected.length}} รายการ</button>
+            <button *ngIf="selected.length > 0" (click)="approveMulti()" class="btn btn-sm btn-success-outline">อนุมัติ {{selected.length}}
+              รายการ</button>
+            <button *ngIf="selected.length > 0" (click)="disApproveMulti()" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ
+              {{selected.length}} รายการ</button>
           </div>
           <!-- <clr-icon shape="search"></clr-icon>
           <input type="text" name="txtQuery" style="width: 350px;" placeholder="ระบุ ชื่อ/สกุล, เลขบัตรประชาชน"> -->
@@ -57,7 +59,7 @@
           <clr-dg-cell>{{w.hn}}</clr-dg-cell>
           <clr-dg-cell>{{w.cid}}</clr-dg-cell>
           <clr-dg-cell>{{w.first_name}} {{w.last_name}}</clr-dg-cell>
-          <clr-dg-cell>{{w.date_serve | toThaiDate}}</clr-dg-cell>
+          <clr-dg-cell>{{w.date_serv | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
           <clr-dg-cell>
             <clr-icon title="ลงทะเบียน consent form แล้ว" *ngIf="w.consent" shape="check"></clr-icon>
