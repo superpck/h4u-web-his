@@ -64,6 +64,8 @@ export class HomeComponent implements OnInit {
       const rs: any = await this.homeService.getRequestService(status, this.hcode);
       if (rs.ok) {
         this.waiting = rs.rows;
+        console.log(this.waiting);
+
         // for (const v of this.waiting) {
         // const rsC = await this.consentService.getConsent(v.cid);
         // v.consent = rsC.ok;
@@ -103,8 +105,7 @@ export class HomeComponent implements OnInit {
           const rs: any = await this.homeService.getService(w.hn, w.date_serve, w.request_id, w.uid);
           console.log(rs);
           if (rs.ok) {
-            const data = rs.rows;
-            const rsS: any = await this.homeService.sendService(data);
+            const rsS: any = await this.homeService.sendService(rs.rows);
           } else {
             await this.homeService.noData(w.request_id);
           }
@@ -131,7 +132,6 @@ export class HomeComponent implements OnInit {
   }
 
   approveMulti() {
-    console.log(this.selected);
     this.alertService.confirm(`คุณต้องการที่จะอนุมัติ ${this.selected.length} รายการ ใช่หรือไม่!`)
       .then(async (result) => {
         if (result.value) {
