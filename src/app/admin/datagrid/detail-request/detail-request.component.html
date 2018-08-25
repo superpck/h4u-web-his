@@ -9,12 +9,10 @@
       <clr-icon *ngIf="detail.cid !== cid" style="color: yellow" shape="warning-standard"></clr-icon>
       <clr-icon *ngIf="detail.cid == cid" style="color: green" shape="check"></clr-icon>
     </div>
-    <div class="col-md-2"> 
-      {{_titleName}}{{_firstName}} {{_lastName}}
-      <clr-icon *ngIf="_titleName !== titleName || _firstName !== firstName || _lastName !== lastName"
-        style="color: yellow" shape="warning-standard"></clr-icon>
-      <clr-icon *ngIf="_titleName === titleName && _firstName === firstName && _lastName === lastName"
-        style="color: green" shape="check"></clr-icon>
+    <div class="col-md-2">
+      {{_firstName}} {{_lastName}}
+      <clr-icon *ngIf="_firstName !== firstName || _lastName !== lastName" style="color: yellow" shape="warning-standard"></clr-icon>
+      <clr-icon *ngIf="_firstName === firstName && _lastName === lastName" style="color: green" shape="check"></clr-icon>
     </div>
   </div>
   <clr-datagrid>

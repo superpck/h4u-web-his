@@ -15,7 +15,6 @@ export class DetailRequestComponent implements OnInit {
   hcode: any = '';
   hn: any = '';
   dateServe: any = '';
-  titleName: any = '';
   firstName: any = '';
   lastName: any = '';
   requestId: any = '';
@@ -39,14 +38,15 @@ export class DetailRequestComponent implements OnInit {
   }
 
   getDetail() {
-    this.dateServe = this.details.date_serve;
+    console.log(this.details);
+
+    this.dateServe = this.details.date_serv;
     this.hn = this.details.hn;
     this.hcode = this.details.hcode;
     this.requestId = this.details.request_id;
     this.uid = this.details.uid;
-    this.titleName = this.details.name.title_name;
-    this.firstName = this.details.name.first_name;
-    this.lastName = this.details.name.last_name;
+    this.firstName = this.details.first_name;
+    this.lastName = this.details.last_name;
     this.cid = this.details.cid;
   }
 
@@ -60,7 +60,6 @@ export class DetailRequestComponent implements OnInit {
 
       if (rs.ok) {
         this.detail = rs.rows;
-        this._titleName = rs.rows.profile.name.title_name;
         this._firstName = rs.rows.profile.name.first_name;
         this._lastName = rs.rows.profile.name.last_name;
       } else {

@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
       .then(async (result) => {
         if (result.value) {
           for (const w of this.selected) {
-            const rs: any = await this.homeService.getService(w.hn, w.date_serv, w.requests_id, w.uid);
+            const rs: any = await this.homeService.getService(w.hn, w.date_serv, w.request_id, w.uid);
             if (rs.ok) {
               console.log(rs.rows);
               const rsS: any = await this.homeService.sendService(rs.rows);
