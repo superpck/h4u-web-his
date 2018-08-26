@@ -61,11 +61,11 @@ export class DetailRequestComponent implements OnInit {
       if (rs.ok) {
         this.detail = rs.rows;
         this.profile = rs.profile[0];
-        console.log(this.profile);
+        // console.log(this.detail);
 
         this._firstName = rs.profile[0].first_name;
         this._lastName = rs.profile[0].last_name;
-        console.log(this._firstName, '--', this._firstName);
+        // console.log(this._firstName, '--', this._lastName);
       } else {
         // this.alertService.error(rs.error);
       }

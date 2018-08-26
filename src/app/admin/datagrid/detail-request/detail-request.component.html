@@ -20,7 +20,8 @@
     <clr-dg-row *ngFor="let s of detail.diagnosis">
       <clr-dg-cell>{{s.date_serv | toThaiDate}}</clr-dg-cell>
       <clr-dg-cell>Seq : {{s.seq}}</clr-dg-cell>
-      <clr-dg-cell>{{s.provider_name}}</clr-dg-cell>
+      <clr-dg-cell>{{s.icd_code}}</clr-dg-cell>
+      <clr-dg-cell>{{s.icd_name}}</clr-dg-cell>
       <clr-dg-cell>
       </clr-dg-cell>
     </clr-dg-row>
