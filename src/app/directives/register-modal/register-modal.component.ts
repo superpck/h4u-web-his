@@ -63,7 +63,7 @@ export class RegisterModalComponent implements OnInit {
     }
   }
 
-  show(o: any) {
+  show() {
     const decoded: any = this.jwtHelper.decodeToken(sessionStorage.getItem('token'));
     this.profile.isMember = decoded.is_member;
     this.profile.fullName = decoded.fullname;

@@ -94,7 +94,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   doRegister() {
-    this.registerModal.show(null);
+    this.registerModal.show();
   }
 
 }
