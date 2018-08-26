@@ -1,5 +1,5 @@
 <div>
-  <div class="row" *ngIf="detail">
+  <!-- <div class="row" *ngIf="detail">
     <div class="col-md-2">ข้อมูลจากระบบ HIS</div>
     <div class="col-md-2">{{detail.hn}}
       <clr-icon *ngIf="detail.hn !== hn" style="color: yellow" shape="warning-standard"></clr-icon>
@@ -9,14 +9,14 @@
       <clr-icon *ngIf="detail.cid !== cid" style="color: yellow" shape="warning-standard"></clr-icon>
       <clr-icon *ngIf="detail.cid == cid" style="color: green" shape="check"></clr-icon>
     </div>
-    <div class="col-md-2"> 
+    <div class="col-md-2">
       {{_titleName}}{{_firstName}} {{_lastName}}
       <clr-icon *ngIf="_titleName !== titleName || _firstName !== firstName || _lastName !== lastName"
         style="color: yellow" shape="warning-standard"></clr-icon>
       <clr-icon *ngIf="_titleName === titleName && _firstName === firstName && _lastName === lastName"
         style="color: green" shape="check"></clr-icon>
     </div>
-  </div>
+  </div> -->
   <clr-datagrid>
     <clr-dg-placeholder>ไม่มีข้อมูลการรับบริการ!</clr-dg-placeholder>
     <clr-dg-row *ngFor="let s of detail.services">

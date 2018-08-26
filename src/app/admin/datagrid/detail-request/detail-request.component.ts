@@ -44,9 +44,9 @@ export class DetailRequestComponent implements OnInit {
     this.hcode = this.details.hcode;
     this.requestId = this.details.request_id;
     this.uid = this.details.uid;
-    this.titleName = this.details.name.title_name;
-    this.firstName = this.details.name.first_name;
-    this.lastName = this.details.name.last_name;
+    // this.titleName = this.details.name.title_name;
+    // this.firstName = this.details.name.first_name;
+    // this.lastName = this.details.name.last_name;
     this.cid = this.details.cid;
   }
 
@@ -60,9 +60,10 @@ export class DetailRequestComponent implements OnInit {
 
       if (rs.ok) {
         this.detail = rs.rows;
-        this._titleName = rs.rows.profile.name.title_name;
-        this._firstName = rs.rows.profile.name.first_name;
-        this._lastName = rs.rows.profile.name.last_name;
+        console.log(this.detail);
+        // this._titleName = rs.rows.profile.name.title_name;
+        // this._firstName = rs.rows.profile.name.first_name;
+        // this._lastName = rs.rows.profile.name.last_name;
       } else {
         // this.alertService.error(rs.error);
       }
