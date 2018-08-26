@@ -12,6 +12,9 @@
               {{errorMessage}}
           </div>
           <button (click)="doLogin()" [clrLoading]="logging" type="button" class="btn btn-primary" [disabled]="!username || !password">เข้าใช้งานระบบ</button>
+          <button *ngIf="register" (click)="doRegister()" type="button" class="btn btn-info" style="margin-top: 12px;">ลงทะเบียนเข้าร่วมโครงการ H4U</button>
       </div>
   </form>
 </div>
+
+<app-register-modal #registerModal></app-register-modal>
