@@ -17,11 +17,14 @@ import 'clarity-icons/shapes/all-shapes';
 
 import { LoginModule } from './login/login.module';
 import { AuthModule } from './auth/auth.module';
+import { ManagerModule } from './manager/manager.module';
+import { DeniedComponent } from './denied/denied.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DeniedComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { AuthModule } from './auth/auth.module';
     ClarityModule.forRoot(),
     AdminModule,
     LoginModule,
-    AuthModule
+    AuthModule,
+    ManagerModule
   ],
   providers: [
     JwtHelper,

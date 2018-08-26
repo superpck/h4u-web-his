@@ -13,6 +13,8 @@
           </div>
           <button (click)="doLogin()" [clrLoading]="logging" type="button" class="btn btn-primary" [disabled]="!username || !password">เข้าใช้งานระบบ</button>
           <button *ngIf="register" (click)="doRegister()" type="button" class="btn btn-info" style="margin-top: 12px;">ลงทะเบียนเข้าร่วมโครงการ H4U</button>
+          <button *ngIf="manageH4U" routerLink="/admin" type="button" class="btn btn-info" style="margin-top: 12px;">เข้าใช้งาน Health For You (H4U)</button>
+          <button *ngIf="manageUser" routerLink="/manager" type="button" class="btn btn-info" style="margin-top: 12px;">จัดการบัญชีผู้ใช้งาน H4U</button>
       </div>
   </form>
 </div>

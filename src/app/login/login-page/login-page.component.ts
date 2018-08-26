@@ -19,6 +19,8 @@ export class LoginPageComponent implements OnInit {
   isError: boolean = false;
   logging: boolean = false;
   register = false;
+  manageUser = false;
+  manageH4U = false;
 
   constructor(
     private loginService: LoginService,
@@ -41,11 +43,21 @@ export class LoginPageComponent implements OnInit {
           const idx = _.findIndex(decodedToken.permissions, ['permission_code', '002']);
           const status = decodedToken.status;
           if (status === 'Y') {
-            if (idx > -1) {
-              this.route.navigate(['admin']);
+            if (decodedToken.is_admin === 'Y' || decodedToken.is_staff === 'Y') {
+              this.manageUser = true;
+              if (idx > -1) {
+                this.manageH4U = true;
+              } else {
+                this.route.navigate(['manager']);
+              }
             } else {
-              this.isError = true;
-              this.errorMessage = 'บัญชีของคุณไม่มีสิทธิ์ใช้งาน Health for You (H4U)';
+              this.manageUser = false;
+              if (idx > -1) {
+                this.route.navigate(['admin']);
+              } else {
+                this.isError = true;
+                this.errorMessage = 'บัญชีของคุณไม่มีสิทธิ์ใช้งาน Health for You (H4U)';
+              }
             }
           } else if (status === 'N') {
             this.isError = true;
