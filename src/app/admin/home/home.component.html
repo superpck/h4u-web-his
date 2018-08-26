@@ -48,7 +48,6 @@
         <clr-dg-column>ชื่อ-สกุล</clr-dg-column>
         <clr-dg-column>วันที่รับริการ</clr-dg-column>
         <clr-dg-column>สถานะ</clr-dg-column>
-        <clr-dg-column [style.width.px]="10">ยินยอมเปิดเผยข้อมูล</clr-dg-column>
         <clr-dg-column></clr-dg-column>
 
         <clr-dg-placeholder>ไม่พบผู้ขอข้อมูล!</clr-dg-placeholder>
@@ -62,11 +61,8 @@
           <clr-dg-cell>{{w.date_serv | toThaiDate}}</clr-dg-cell>
           <clr-dg-cell>{{w.status | statusToTh}}</clr-dg-cell>
           <clr-dg-cell>
-            <clr-icon title="ลงทะเบียน consent form แล้ว" *ngIf="w.consent" shape="check"></clr-icon>
-          </clr-dg-cell>
-          <clr-dg-cell>
             <div class="btn-group">
-              <button [disabled]="w.status!=='waiting' || !w.consent" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
+              <button [disabled]="w.status!=='waiting'" (click)="approve(w)" class="btn btn-sm btn-success-outline">อนุมัติ</button>
               <button [disabled]="w.status!=='waiting'" (click)="disApprove(w)" class="btn btn-sm btn-danger-outline">ไม่อนุมัติ</button>
             </div>
           </clr-dg-cell>
