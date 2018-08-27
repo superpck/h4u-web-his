@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from 'clarity-angular';
+import { ClarityModule } from '@clr/angular';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { JwtHelper } from 'angular2-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,8 +12,8 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { environment } from '../environments/environment';
 
-import 'clarity-icons';
-import 'clarity-icons/shapes/all-shapes';
+// import 'clarity-icons';
+// import 'clarity-icons/shapes/all-shapes';
 
 import { LoginModule } from './login/login.module';
 import { AuthModule } from './auth/auth.module';
