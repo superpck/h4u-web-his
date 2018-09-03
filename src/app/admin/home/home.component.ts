@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   jwtHelper: JwtHelper = new JwtHelper();
   // registeredUsers: any = [];
   // unRegisteredUsers: any = [];
-  // total = 0;
-  // perPage = 20;
+  total = 0;
+  perPage = 20;
   openLoading = false;
   waiting = [];
   selected = [];
@@ -73,7 +73,6 @@ export class HomeComponent implements OnInit {
       }
       this.openLoading = false;
     } catch (error) {
-      //console.log(error);
       this.openLoading = false;
     }
   }
@@ -147,7 +146,7 @@ export class HomeComponent implements OnInit {
           }
           this.getDetail('waiting');
         } else {
-          this.alertService.error(`ข้อมูลที่ส่ง ${this.selected.length} รายการ ไม่สามารถบันทึกได้ กรุณาตรวจสอบ้อมูล`)
+          this.alertService.error(`ข้อมูลที่ส่ง ${this.selected.length} รายการ ไม่สามารถบันทึกได้ กรุณาตรวจสอบ้อมูล`);
           console.log('exit');
         }
       });
